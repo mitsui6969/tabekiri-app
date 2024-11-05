@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import { Home } from "./pages/Home"
 import { Login } from './pages/login'
+import { BlueBotton } from './pages/BlueBotton'
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
+        <Route path="/bluebutton" element={<BlueBotton/>} />
       </Routes>
     </Router>
   )
