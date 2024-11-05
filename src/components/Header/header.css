@@ -20,21 +20,40 @@ header {
     text-decoration: none;
 }
 
-ul {
-    padding: 0;
+.menue {
+    color: #fff;
     margin: 0;
-    display: flex;
+    padding: 0;
     height: 50px;
     line-height: 50px;
 }
 
+.navigates {
+    background-color: rgb(241, 231, 217);
+    height: 200px;
+    width: 20vw;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
 li {
     list-style: none;
-    margin-left: 15px;
+    width: 80%;
+    margin: 0 auto;
     font-size: small;
+    border-bottom: #3b3838 solid 1px;
 }
 
 .link {
-    color: #fff;
+    color: #3b3838;
     text-decoration: none;
 }
+
