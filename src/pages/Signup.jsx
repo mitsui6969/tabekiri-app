@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./Signup.css"
+import "../styles/Signup.css"
+
 export const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
