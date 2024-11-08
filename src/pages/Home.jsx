@@ -1,4 +1,3 @@
-import './src/footer/footer.jsx';
 
 export function Home() {
   const handleNavigate = () => {
