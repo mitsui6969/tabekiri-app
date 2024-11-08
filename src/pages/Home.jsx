@@ -1,3 +1,4 @@
+import './src/footer/footer.jsx';
 
 export function Home() {
   const handleNavigate = () => {
@@ -9,8 +10,6 @@ export function Home() {
       <button onClick={handleNavigate}>
       <img src="QRコード画像" alt="QRコード画面" className="footer__icon" /> 
       </button>
-      <footer className="footer">
-    </footer>
    </div>
     
   );
