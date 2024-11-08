@@ -1,0 +1,54 @@
+.footer {
+    width: 100%;
+    display: flex;
+    background-color: coral;
+    padding: 10px 0;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+footer {
+    align-items: center;     /* 縦方向の中央揃え */
+    padding: 0 20px;
+    box-sizing: border-box;
+    max-width: 500px;
+}
+
+.background-bar {
+    width: 100%;
+    max-width: 390px;
+    height: 80px;             /* 背景の帯の高さ */
+    background-color: #FFA500; /* オレンジ色 */
+    position: fixed;           /* 画面の下に固定 */
+    bottom: 0;
+    display: flex;
+    justify-content: center;   /* 横方向の中央揃え */
+}
+
+/* 丸いQRコードエリア */
+.circle-button {
+    width: 100px;               /* 円の直径 */
+    height: 100px;              /* 円の直径 */
+    background-color: #fff;     /* 白背景 */
+    border-radius: 50%;         /* 丸くする */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -30px;                 /* 背景の帯に半分被せる */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* ボタンにホバー時のスタイル */
+.circle-button:hover {
+    background-color: #f0f0f0; /* ホバー時の背景色 */
+}
+
+/* QRコードのイメージ */
+.circle-button img {
+    width: 60px;
+    height: 60px;
+}
+

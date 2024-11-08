@@ -8,7 +8,11 @@ import { LoginOrSignup } from './pages/LoginOrSignup'
 import { Login } from './pages/login'
 import { Signup } from './pages/Signup'
 import { BlueBotton } from './pages/BlueBotton'
-import QrScanner  from './pages/QrScanner'
+
+import { Footer } from './components/footer/footer'
+
+import {QrScanner}  from './pages/QrScanner'
+
 
 
 function App() {
@@ -17,6 +21,7 @@ function App() {
 
     <Router>
       <Header/>
+
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/LoginOrSignup" element={<LoginOrSignup/>} />
@@ -26,6 +31,8 @@ function App() {
         <Route path="/QRcode" element={<QrScanner/>} />
 
       </Routes>
+
+      <Footer/>
     </Router>
   )
 }
