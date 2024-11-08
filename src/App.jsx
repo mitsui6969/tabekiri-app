@@ -20,7 +20,7 @@ function App() {
 
         <Route path="/login" element={<Login/>} />
         <Route path="/bluebutton" element={<BlueBotton/>} />
-        <Route path="/QRcode" element={QrScanner/>} />
+        <Route path="/QRcode" element={QrScanner} />
 
       </Routes>
     </Router>
