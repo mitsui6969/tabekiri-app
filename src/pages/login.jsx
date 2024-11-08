@@ -1,9 +1,11 @@
 import { useState } from "react";
 
 export function Login() {
+
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
 
     const handleLogin = () => {
         // サンプルのユーザー名とパスワード
@@ -82,3 +84,5 @@ const styles = {
 };
 
 export default Login;
+
+
