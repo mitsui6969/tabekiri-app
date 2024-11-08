@@ -8,10 +8,11 @@ export function Home() {
 
   return (
     <div>
-      <button onClick={handleNavigate}>
-        <img src="QRコード画像" alt="QRコード画面" className="footer__icon" /> 
-      </button>
-   </div>
+      <div>
+        <button onClick={handleNavigate}>
+          <img src="QRコード画像" alt="QRコード画面" className="footer__icon" /> 
+        </button>
+      </div>
     
 
       {/* ポイントカードの表示 */}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 
-const QrScanner = () => {
+export const QrScanner = () => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
   const [isFrontCamera, setIsFrontCamera] = useState(false); //　カメラの向きを切り替えるためのステート
 
