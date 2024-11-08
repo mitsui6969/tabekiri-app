@@ -25,6 +25,7 @@ const QrScanner = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>QRコードをスキャンしてください</h2>
+      
       <QrReader
         onResult={(result, error) => {
           if (!!result) {
@@ -38,13 +39,33 @@ const QrScanner = () => {
         style={{ width: '300px', margin: '0 auto' }}
       />
 
-      <button onClick = {toggleCamera} style = {{ margin: '10px'}}>
+      <button onClick={toggleCamera} style={{ margin: '10px'}}>
         カメラを{isFrontCamera ? '外' : '内'}カメラに切り替える  
       </button>
 
-      <p>スキャン結果: {data}</p>
+      <p style = {styles.result}>スキャン結果: {data}</p>
     </div>
   );
 };
 
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column', 
+    justifyContent: 'conter', // 垂直方向の中央
+    alignItems: 'center', // 水平方向の中央
+    height: '100vh', // 画面全体の高さ
+    textalign: 'center',
+  },
+  title: {
+    marginBottom: '20px',
+  },
+  qrReader: {
+    width: '300px', // QrReaderの幅を指定
+    maxWidth:'100%',
+  },
+  result: {
+    marginTop: '20px',
+  },
+}
 export default QrScanner;
