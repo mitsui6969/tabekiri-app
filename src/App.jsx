@@ -1,15 +1,24 @@
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import { Home } from "./pages/Home.jsx"
-import { Login } from "./pages/login.jsx";
+
+import './App.css'
+import { Header } from './components/Header/header'
+import { Home } from "./pages/Home"
+import { Login } from './pages/login'
+import { BlueBotton } from './pages/BlueBotton'
+
 
 
 function App() {
 
   return (
     <Router>
+      <Header/>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/log" element={<Login/>} />
+
+        <Route path="/login" element={<Login/>} />
+        <Route path="/bluebutton" element={<BlueBotton/>} />
+
       </Routes>
     </Router>
   )
