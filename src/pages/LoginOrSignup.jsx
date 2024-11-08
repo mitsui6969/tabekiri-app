@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./LoginOrSignup.css"; // スタイル用のCSSファイルを作成してインポート
+import "./LoginOrSignup.css";
 
 export const LoginOrSignup = () => {
   const navigate = useNavigate();
