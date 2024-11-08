@@ -8,9 +8,25 @@ const QrScanner = () => {
   // QRコード読み取り成功時の処理
   const handleScan = (result) => {
     if (result) {
-      setData(result.text); // 結果を更新
+      const scannedText = result.text;
+      setData(scannedText); // 結果を更新
+
+      // QRコードの内容がURLであれば自動でリダイレクト
+      if (isValidURL(scannedText)) {
+        window.location.href = scannedText;
+      }
     }
-  };
+  }
+
+  // URLの形式かどうかを判定する関数
+  const isValidURL = (text) => {
+    try {
+      new URL(text); // textをURLとして扱えるかチェック
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 
   // 読み取りエラーの処理
   const handleError = (err) => {
