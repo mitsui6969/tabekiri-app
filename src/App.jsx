@@ -6,7 +6,7 @@ import { Header } from './components/Header/header'
 import { Home } from "./pages/Home"
 import { Login } from './pages/login'
 import { BlueBotton } from './pages/BlueBotton'
-import { QrScanner } from './pages/QrScanner'
+import QrScanner  from './pages/QrScanner'
 
 
 function App() {
@@ -17,10 +17,9 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<Home/>} />
-
         <Route path="/login" element={<Login/>} />
         <Route path="/bluebutton" element={<BlueBotton/>} />
-        <Route path="/QRcode" element={QrScanner} />
+        <Route path="/QRcode" element={<QrScanner/>} />
 
       </Routes>
     </Router>
