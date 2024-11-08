@@ -1,3 +1,5 @@
+import React from 'react';
+import PointCard from './PointCard'; // PointCard をインポート
 
 export function Home() {
   const handleNavigate = () => {
@@ -7,12 +9,19 @@ export function Home() {
   return (
     <div>
       <button onClick={handleNavigate}>
-      <img src="QRコード画像" alt="QRコード画面" className="footer__icon" /> 
+        <img src="QRコード画像" alt="QRコード画面" className="footer__icon" /> 
       </button>
    </div>
     
+
+      {/* ポイントカードの表示 */}
+      <PointCard />
+
+      <footer className="footer">
+        {/* フッターコンテンツ */}
+      </footer>
+    </div>
   );
 }
-
 
 export default Home;
