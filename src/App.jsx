@@ -6,7 +6,7 @@ import { Header } from './components/Header/header'
 import { Home } from "./pages/Home"
 import { Login } from './pages/login'
 import { BlueBotton } from './pages/BlueBotton'
-import {QrScanner}  from './pages/QrScanner'
+import { QrScanner }  from './pages/QrScanner'
 
 
 function App() {
