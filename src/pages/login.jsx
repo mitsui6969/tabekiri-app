@@ -17,7 +17,6 @@ export function Login() {
         try {
             // ログイン処理
             await signInWithEmailAndPassword(auth, email, password);
-            alert("ログイン成功！");
             navigate("/");
         } catch (err) {
             setError("メールまたはパスワードが違います");
