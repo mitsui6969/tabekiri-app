@@ -6,13 +6,14 @@ import { getStorage } from "firebase/storage";
 
 // import.meta.env~で先ほど.envファイルに入力したfirebaseConfigの値を参照しています
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_APIKEY,
-    authDomain: import.meta.env.VITE_AUTHDOMAIN,
-    projectId: import.meta.env.VITE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_APP_ID,
-    measurementId: import.meta.env.VITE_MEASUREMENT_ID,
+    apiKey: "AIzaSyC1W3pwtYJuVyncqDHnHMMY_5Ct7nG5Kos",
+    authDomain: "tabekiri-app.firebaseapp.com",
+    databaseURL: "https://tabekiri-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "tabekiri-app",
+    storageBucket: "tabekiri-app.appspot.com",
+    messagingSenderId: "74541359139",
+    appId: "1:74541359139:web:295737317debbaabbbd196",
+    measurementId: "G-P4E9BNWW57"
 };
 
 // NOTE >> Firebaseの初期化を行います。
