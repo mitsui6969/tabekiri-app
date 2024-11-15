@@ -5,7 +5,7 @@ import './header.css'
 export const Header = () => {
     return(
         <div className="header">
-            <header>
+            <div className="header-component">
                 <div>
                 <Link to='/' className="logo">LOGO</Link>
                 </div>
@@ -29,7 +29,7 @@ export const Header = () => {
                         </ul>
                     </nav>
                 </details>
-            </header>
+            </div>
         </div>
     )
 }
