@@ -47,6 +47,7 @@ export function Login() {
                     ログイン
                 </button>
             </form>
+            <p className="navi-signup">新規登録は<a href="/Signup">こちら</a></p>
             {error && <div className="error-message">{error}</div>}
         </div>
     );
