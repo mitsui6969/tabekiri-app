@@ -19,7 +19,7 @@ footer {
     max-width: 390px;
     height: 80px;             /* 背景の帯の高さ */
     background-color: #FFA500; /* オレンジ色 */
-    position: fixed;           /* 画面の下に固定 */
+    position: absolute;           /* 画面の下に固定 */
     bottom: 0;
     display: flex;
     justify-content: center;   /* 横方向の中央揃え */
