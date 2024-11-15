@@ -1,5 +1,5 @@
 import React from 'react';
-import PointCard from './PointCard'; // PointCard をインポート
+import { PointCard } from '../components/PointCard/pointCard';
 
 export function Home() {
   const handleNavigate = () => {
@@ -16,11 +16,9 @@ export function Home() {
     
 
       {/* ポイントカードの表示 */}
-      <PointCard />
-
-      <footer className="footer">
-        {/* フッターコンテンツ */}
-      </footer>
+      <div className='pointCard'>
+        <PointCard />
+      </div>
     </div>
   );
 }
