@@ -18,7 +18,7 @@ export const QrScanner = () => {
       Sound();
 
       // QRコードが読み込まれたらホーム画面に遷移
-      navigate('/Home')
+      navigate('/')
     }
   }
 
