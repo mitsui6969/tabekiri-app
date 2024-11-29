@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>現在位置を表示</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+
+	<script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
+	<script>
+	var mapobj;
+	var watchTime;
+	var marker;
+	var minInterval = 5000; // 情報取得の最少間隔（単位 msec）
+	var watch_id = 0; // 監視識別ID
+	
+	function getPosi2() {
+	var button = document.getElementById('button2');
+	if( watch_id > 0 ){
+	window.navigator.geolocation.clearWatch(watch_id);
+	watch_id = 0;
+	button.textContent = "測定開始";
+	} else {
+	var p_options = {
+	enableHighAccuracy: true,
+	timeout: 50000,
+	maximumAge: 0
+	};
+	watch_id = window.navigator.geolocation.watchPosition(monitor, error, p_options); 
+	button.textContent = "測定停止";
+	}
+	}
+	
+	function error(err) {
+	console.warn('ERROR(' + err.code + '): ' + err.message);
+	}
+	
+	function monitor(event) {
+	if(event.coords.accuracy > 1000) return;
+	if((new Date().getTime() - watchTime) < minInterval) return;
+	watchTime = new Date().getTime();
+	var latitude = event.coords.latitude;
+	var longitude = event.coords.longitude;
+	document.querySelector('#accu').textContent = event.coords.accuracy.toFixed(0);
+	var Pset = new L.LatLng(latitude, longitude);
+	var marktxt = "現在地: " + latitude.toFixed(6) + ", " + longitude.toFixed(6);
+	marker = L.marker(Pset, {icon: redIcon}).addTo(mapobj).bindPopup(marktxt).openPopup();
+	mapobj.setView(Pset);
+	}
+	
+	function drawMark(Pset, name, address, coordinates) {
+	var text = "<b>" + name + "</b><br>" + 
+	"住所: " + address + "<br>" +
+	"座標: " + coordinates;
+	marker = L.marker(Pset, {icon: greenIcon}).addTo(mapobj).bindPopup(text).openPopup();
+	}
+	
+	// 現在地の赤ピンアイコン設定
+	var redIcon = L.icon({
+	iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+	iconSize: [32, 32],
+	iconAnchor: [16, 32],
+	popupAnchor: [0, -32]
+	});
+    
+	// 他の場所のオレンジピンアイコン設定
+    var greenIcon = L.icon({
+    iconUrl: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png', // オレンジ色のピン画像
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+    });
+
+	
+	function init() {
+	mapobj = L.map('mapDiv', { zoomControl: true });
+	mapobj.setView([35.360631,138.727307], 13);
+	L.control.scale({maxWidth: 200, position: 'bottomleft', imperial: false}).addTo(mapobj);
+	
+	var gsiattr = "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>国土地理院</a>";
+	var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', { attribution: gsiattr });
+	var gsiphot = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg', { attribution: gsiattr });
+	var osm = L.tileLayer('http://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors" });
+	
+	var baseMaps = {
+	"地理院地図": gsi,
+	"地理院写真": gsiphot,
+	"O.S.Map": osm
+	};
+	L.control.layers(baseMaps).addTo(mapobj);
+	gsi.addTo(mapobj);
+	
+	// 指定した座標に緑ピンを刺し、名前、住所、座標を表示
+	var a1 = new L.LatLng(36.530105, 136.629286); // いしかわフードバンク・ネットの座標
+	var a2 = "KIT 学食"; // 場所の名前
+	var a3 = "石川県野々市市扇が丘7-1"; // 住所
+	var a4 = "36.530105, 136.629286"; // 座標テキスト
+	drawMark(a1, a2, a3, a4);
+	
+	var b1 = new L.LatLng(36.572162427156194, 136.64797949391553); // フードバンクいしかわの座標
+	var b2 = "フードバンクいしかわ"; // 場所の名前
+	var b3 = "金沢市芳斉2丁目13-12"; // 住所
+	var b4 = "36.572162427156194, 136.64797949391553"; // 座標テキスト
+	drawMark(b1, b2, b3, b4);
+	
+	var c1 = new L.LatLng(36.40053494326456, 136.47417698345168); // フードバンク小松の座標
+	var c2 = "フードバンク小松"; // 場所の名前
+	var c3 = "小松市打越町丙106－3"; // 住所
+	var c4 = "36.40053494326456, 136.47417698345168"; // 座標テキスト
+	drawMark(c1, c2, c3, c4);
+	}
+	</script>
+	<style>
+	html, body { height: 100%; margin: 0; padding: 0; }
+	#mapDiv { position: absolute; top: 34px; left: 3px; right: 3px; bottom: 3px; }
+	</style>
+	</head>
+	<body onload="init()">
+	<div style="text-align: center;">
+	<span style="font-size: 24px;">現在地を確認する</span>
+	<button id="button2" onclick="getPosi2()">測定開始</button>
+	　精度: <span id="accu">__</span>m
+	</div>
+	<div id="mapDiv">ここに地図を表示</div>
+	</body>
+	</html>
