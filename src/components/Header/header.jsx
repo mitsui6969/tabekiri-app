@@ -5,13 +5,13 @@ import './header.css'
 export const Header = () => {
     return(
         <div className="header">
-            <header>
+            <div className="header-component">
                 <div>
                 <Link to='/' className="logo">LOGO</Link>
                 </div>
 
                 <details>
-                    <summary className="menue">menue</summary>
+                    <summary className="menue">menu</summary>
                     <nav className="navigates">
                         <ul>
                             <li>
@@ -21,15 +21,15 @@ export const Header = () => {
                                 <Link to={'/login'} className="link">Login</Link>
                             </li>
                             <li>
-                                <Link to={'/bluebutton'} className="link">BlueBotton</Link>
+                                <Link to={'/bluebutton'} className="link">map</Link>
                             </li>
                             <li>
-                                <Link to={'/map'} className='link'>map</Link>
+                                <Link to={'/map'} className='link'>問い合わせフォーム</Link>
                             </li>
                         </ul>
                     </nav>
                 </details>
-            </header>
+            </div>
         </div>
     )
 }
