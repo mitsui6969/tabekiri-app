@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Firebase Firestore用
 // import { getAuth } from 'firebase/auth'; // Firebase認証用
-import { app } from './firebase'; // Firebaseアプリの設定ファイルをインポート
-import './Post.css'; // CSSファイルでスタイルを適用
+import { app } from '../../firebase/firebase'; // Firebaseアプリの設定ファイルをインポート
+// import './Post.css'; // CSSファイルでスタイルを適用
 
 const Post = ({ postId }) => {
     const [postData, setPostData] = useState(null);
