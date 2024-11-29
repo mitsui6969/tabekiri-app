@@ -8,7 +8,7 @@ import { Login } from './pages/login'
 import { Signup } from './pages/Signup'
 import { Header } from './components/Header/header'
 import { Footer } from './components/footer/footer'
-import {QrScanner}  from './pages/QrScanner'
+import { QrScanner }  from './pages/QrScanner'
 
 
 
