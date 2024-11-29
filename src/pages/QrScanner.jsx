@@ -24,7 +24,7 @@ export const QrScanner = () => {
   }
 
   const Sound = () => {
-    const audio = new Audio('レジスターで精算.mp3'); // 音声ファイルのパス
+    const audio = new Audio('「やるじゃないか！」.mp3'); // 音声ファイルのパス
     audio.play().catch((error) => {
       console.error("音声再生に失敗しました:", error);
     })
