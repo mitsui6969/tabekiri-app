@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import './App.css'
 import { Home } from "./pages/Home"
@@ -13,6 +13,12 @@ import { QrScanner }  from './pages/QrScanner'
 
 
 function App() {
+  const [stampCount, setStampCount] = useState(0); // スタンプ数の状態
+
+  // スタンプを1つ追加する関数
+  const addStamp = () => {
+    setStampCount((prevCount) => prevCount + 1);
+  }
 
   return (
 
@@ -24,6 +30,8 @@ function App() {
         <Route path="/Signup" element={<Signup/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/QRcode" element={<QrScanner/>} />
+        <Route path='/' element={<QrScanner addStamp={addStamp} />} />
+        <Route path='/Home' element={<Home stampCount={stampCount}/>} />
       </Routes>
       <Footer/>
     </Router>
