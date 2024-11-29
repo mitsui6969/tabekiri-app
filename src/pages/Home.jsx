@@ -19,6 +19,11 @@ export function Home() {
       <div className='pointCard'>
         <PointCard />
       </div>
+
+      {/* TL */}
+      <div>
+        <h4>TL</h4>
+      </div>
     </div>
   );
 }
