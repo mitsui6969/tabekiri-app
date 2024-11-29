@@ -24,11 +24,11 @@ export const Signup = () => {
           const user = userCredential.user;
 
           const userRef = doc(db, "user", user.uid);
-          await setDoc(userRef, { username });
+          await setDoc(userRef, { name });
 
           navigate("/login");
       } catch (err) {
-          setError("メールまたはパスワードは使えません");
+          setError("メールまたはパスワードは使えません"+err);
       }
   };
 
