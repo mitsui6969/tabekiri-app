@@ -1,30 +1,31 @@
 .card {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 300px;
-    text-align: center;
-    background-color: #f9f9f9;
-    margin: 0 auto;
+  padding: 35px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(2, 50px);
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  grid-template-rows: repeat(2, 50px);
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .stamp {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px; /* 数字のフォントサイズ */
+  font-weight: bold; /* 数字を強調 */
+  color: black; /* 数字の色 */
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
