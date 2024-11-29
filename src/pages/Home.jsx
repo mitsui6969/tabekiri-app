@@ -1,3 +1,4 @@
+import React from "react";
 
 export function Home() {
   const handleNavigate = () => {
@@ -11,7 +12,7 @@ export function Home() {
       </button>
       <footer className="footer">
     </footer>
-   </div>
+    </div>
     
   );
 }
