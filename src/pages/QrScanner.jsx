@@ -3,7 +3,7 @@ import { QrReader } from 'react-qr-reader';
 
 export const QrScanner = () => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
-  const [isFrontCamera, setIsFrontCamera] = useState(false); //　カメラの向きを切り替えるためのステート
+  const [isFrontCamera, setIsFrontCamera] = useState(false); //カメラの向きを切り替えるためのステート
 
   // QRコード読み取り成功時の処理
   const handleScan = (result) => {
