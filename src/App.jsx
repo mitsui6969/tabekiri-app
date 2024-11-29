@@ -31,7 +31,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/QRcode" element={<QrScanner/>} />
         <Route path='/' element={<QrScanner addStamp={addStamp} />} />
-        <Route path='/Home' element={<Home stampCount={stampCount}/>} />
+        <Route path='../components' element={<Home stampCount={stampCount}/>} />
       </Routes>
       <Footer/>
     </Router>
