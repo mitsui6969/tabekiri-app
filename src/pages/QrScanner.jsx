@@ -5,17 +5,29 @@ export const QrScanner = () => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
   const [isFrontCamera, setIsFrontCamera] = useState(false); //　カメラの向きを切り替えるためのステート
 
+
+
   // QRコード読み取り成功時の処理
   const handleScan = (result) => {
     if (result) {
       const scannedText = result.text;
       setData(scannedText); // 結果を更新
 
+      // 効果音を再生
+      Sound();
+
       // QRコードの内容がURLであれば自動でリダイレクト
       if (isValidURL(scannedText)) {
         window.location.href = scannedText;
       }
     }
+  }
+
+  const Sound = () => {
+    const audio = new Audio('ラッパのファンファーレ.mp3'); // 音声ファイルのパス
+    audio.play().catch((error) => {
+      console.error("音声再生に失敗しました:", error);
+    })
   }
 
   // URLの形式かどうかを判定する関数
