@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Firebase Firestore用
 // import { getAuth } from 'firebase/auth'; // Firebase認証用
 import { app } from '../../firebase/firebase'; // Firebaseアプリの設定ファイルをインポート
-// import './Post.css'; // CSSファイルでスタイルを適用
+import './Post.css'; // CSSファイルでスタイルを適用
 
 const Post = ({ postId }) => {
     const [postData, setPostData] = useState(null);
@@ -44,10 +44,10 @@ const Post = ({ postId }) => {
     return (
         <div className="post">
             {/* アイコン */}
-            <div className="post__icon">
-                {/* アイコンがあれば画像表示、なければデフォルト */}
+            {/* <div className="post__icon">
+                
                 <img src="/default-icon.png" alt="User Icon" />
-            </div>
+            </div> */}
 
             {/* ユーザーネーム */}
             <div className="post__user">

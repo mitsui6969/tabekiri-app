@@ -3,6 +3,7 @@ import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/fire
 import { app } from '../firebase/firebase'; // Firebaseアプリの設定ファイル
 import Post from '../components/Post/post'; // Postコンポーネントをインポート
 import { PointCard } from '../components/PointCard/pointCard';
+import '../styles/home.css'
 
 export function Home() {
   const [posts, setPosts] = useState([]); // 投稿データの状態管理
@@ -35,6 +36,7 @@ export function Home() {
 
   return (
     <div>
+      <div className='home-page'>
       <div>
         <button onClick={handleNavigate}>
           <img src="QRコード画像" alt="QRコード画面" className="footer__icon" /> 
@@ -56,6 +58,7 @@ export function Home() {
         ) : (
           <p>投稿がありません。</p>
         )}
+      </div>
       </div>
     </div>
   );
