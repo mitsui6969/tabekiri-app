@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
+import '../styles/QrScanner.css'
 
 export const QrScanner = () => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
-  const [facingMode, setFacingMode] = useState('environment'); //　カメラの向きを切り替えるためのステート
+  const [facingMode, setFacingMode] = useState('environment'); // カメラの向きを切り替えるためのステート
   const navigate = useNavigate(); // React Routerのナビゲーション
 
 
@@ -42,50 +43,32 @@ export const QrScanner = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h2>QRコードをスキャン</h2>
-      <h2>してください</h2>
+    <div className='container'>
+      <h2 className='title'>QRコードをスキャンしてください</h2>
       
-      <QrReader
-        onResult={(result, error) => {
-          if (!!result) {
-            handleScan(result);
-          }
-          if (!!error) {
-            handleError(error);
-          }
-        }}
-        constraints={{ facingMode}} // facingModeを利用してカメラの向きを設定
-        style={{ width: '300px', margin: '0 auto' }}
-      />
+      <div className='qrReader'>
+        <QrReader
+          onResult={(result, error) => {
+            if (!!result) {
+              handleScan(result);
+            }
+            if (!!error) {
+              handleError(error);
+            }
+          }}
+          constraints={{ facingMode}} // facingModeを利用してカメラの向きを設定
+          // style={{ width: '300px', margin: '0 auto' }}
+        />
+      </div>
+      
 
-      <button onClick={toggleFacingMode} style={{ margin: '10px'}}>
+      <button className='toggleButton' onClick={toggleFacingMode}>
         カメラを{facingMode === 'user' ? '外' : '内'}カメラに切り替える  
       </button>
 
-      <p style = {styles.result}>スキャン結果: {data}</p>
+      <p className='result'>スキャン結果: {data}</p>
     </div>
   );
 };
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column', 
-    justifyContent: 'conter', // 垂直方向の中央
-    alignItems: 'center', // 水平方向の中央
-    height: '100vh', // 画面全体の高さ
-    textalign: 'center',
-  },
-  title: {
-    marginBottom: '20px',
-  },
-  qrReader: {
-    width: '300px', // QrReaderの幅を指定
-    maxWidth:'100%',
-  },
-  result: {
-    marginTop: '20px',
-  },
-}
 export default QrScanner;
