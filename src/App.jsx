@@ -40,6 +40,7 @@ function App() {
         <Route path="/QRcode" element={<QrScanner/>} />
         <Route path='/' element={<QrScanner addStamp={addStamp} />} />
         <Route path='../components/PointCard' element={<Home stampCount={stampCount}/>} />
+        <Route path="/Inquiry" element={<Inquiry/>} />
       </Routes>
       <Footer/>
     </Router>
