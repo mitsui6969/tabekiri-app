@@ -8,6 +8,7 @@ import '../styles/home.css'
 export function Home() {
   const [posts, setPosts] = useState([]); // 投稿データの状態管理
   const db = getFirestore(app);
+  const [showModal, setShowModal] = useState(false);
 
   const handleNavigate = () => {
     window.location.href = "https://www.infra-linux.com/linux-ex-menu/#%E6%BC%94%E7%BF%92%EF%BC%90%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%90";
@@ -37,8 +38,9 @@ export function Home() {
   return (
     <div>
       <div className='home-page'>
-      <div>
-      </div>
+      
+      <button onClick={setShowModal(true)}>write</button>
+
 
       {/* ポイントカードの表示 */}
       <div className="pointCard">
