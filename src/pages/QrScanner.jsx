@@ -48,7 +48,8 @@ export const QrScanner = ({addStamp}) => {
 
   return (
     <div className='container'>
-      <h2 className='title'>QRコードをスキャンしてください</h2>
+      <h2 className='title'>QRコードをスキャン</h2>
+      <h2>してください</h2>
       
       <div className='qrReader'>
         <QrReader

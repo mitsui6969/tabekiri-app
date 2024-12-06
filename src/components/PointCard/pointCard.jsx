@@ -1,40 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import { doc, getDoc } from 'firebase/firestore'; // Firestoreを使う
-import { db } from "../../firebase/firebase"; // Firebase設定をインポート
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from "../../firebase/firebase";
 import './pointCard.css';
 
 export const PointCard = () => {
-  const [stamps, setStamps] = useState(
-    Array(2).fill(Array(5).fill(false))
-  );
+  const [stamps, setStamps] = useState(Array(2).fill(Array(5).fill(false)));
   const [cardColor, setCardColor] = useState('#ff4d4d');
   const [isFlipped, setIsFlipped] = useState(false);
-  const [userName, setUserName] = useState(''); // ユーザー名のステート
+  const [userName, setUserName] = useState(); // ユーザー名
+  const [error, setError] = useState(''); // エラー管理用
 
-  // Firebaseからユーザー名を取得する関数
-  const fetchUserName = async () => {
+  // Firestoreからユーザー名を取得
+  const fetchUserName = async (uid) => {
     try {
-      const userDoc = await getDoc(doc(db, 'users', 'USER_ID')); // USER_IDは適切に置き換える
+      const userDoc = await getDoc(doc(db, 'user', uid));
       if (userDoc.exists()) {
-        setUserName(userDoc.data().name); // Firestoreの`name`フィールドを使用
+        setUserName(userDoc.data().username);
       } else {
-        console.error('User not found');
+        setError('ユーザーデータが見つかりません');
       }
-    } catch (error) {
-      console.error('Error fetching user:', error);
+    } catch (err) {
+      console.error('Error fetching user data:', err);
+      setError('データ取得中にエラーが発生しました');
     }
   };
 
   useEffect(() => {
-    fetchUserName(); // コンポーネントのマウント時にユーザー名を取得
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        fetchUserName(user.uid);
+      } else {
+        setError('ログインが必要です');
+      }
+    });
+    return () => unsubscribe();
   }, []);
 
   const handleStampClick = (rowIndex, colIndex) => {
     setStamps((prevStamps) =>
       prevStamps.map((row, rIdx) =>
-        row.map((stamp, cIdx) =>
-          rIdx === rowIndex && cIdx === colIndex ? true : stamp
-        )
+        row.map((stamp, cIdx) => (rIdx === rowIndex && cIdx === colIndex ? true : stamp))
       )
     )
   }
@@ -54,7 +60,7 @@ export const PointCard = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h2>ポイントカード</h2>
+      <h2></h2>
 
       <div style={{ marginBottom: '10px' }}>
         <label htmlFor="card-color">カードの色を選択:</label>
@@ -71,6 +77,7 @@ export const PointCard = () => {
         onClick={handleCardFlip}
       >
         <div className="card-inner">
+          {/* カードの表面 */}
           <div
             className="card-front"
             style={{ backgroundColor: cardColor }}
@@ -82,13 +89,9 @@ export const PointCard = () => {
                     key={`${rowIndex}-${colIndex}`}
                     className="stamp"
                     style={{
-                      backgroundImage: isStamped
-                        ? 'url("/stamp.jpg")'
-                        : 'none',
+                      backgroundImage: isStamped ? 'url("/stamp.jpg")' : 'none',
                       backgroundSize: 'cover',
-                      backgroundColor: isStamped
-                        ? '#ff8080'
-                        : '#e0e0e0',
+                      backgroundColor: isStamped ? '#ff8080' : '#e0e0e0',
                       color: 'black',
                     }}
                     onClick={(e) => {
@@ -103,6 +106,7 @@ export const PointCard = () => {
             </div>
           </div>
 
+          {/* カードの裏面 */}
           <div
             className="card-back"
             style={{
@@ -111,11 +115,12 @@ export const PointCard = () => {
             }}
           >
             <p>{userName ? `こんにちは、${userName}さん！` : 'ユーザー名を読み込み中...'}</p>
+            {error && <p className="error">{error}</p>}
           </div>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default PointCard;
