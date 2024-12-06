@@ -4,8 +4,10 @@ import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from "../../firebase/firebase";
 import './pointCard.css';
 
-export const PointCard = () => {
-  const [stamps, setStamps] = useState(Array(2).fill(Array(5).fill(false)));
+export const PointCard = ({stampCount}) => {
+  const [stamps, setStamps] = useState(
+    Array(2).fill(Array(5).fill(false))
+  );
   const [cardColor, setCardColor] = useState('#ff4d4d');
   const [isFlipped, setIsFlipped] = useState(false);
   const [userName, setUserName] = useState(); // ユーザー名
@@ -37,13 +39,6 @@ export const PointCard = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleStampClick = (rowIndex, colIndex) => {
-    setStamps((prevStamps) =>
-      prevStamps.map((row, rIdx) =>
-        row.map((stamp, cIdx) => (rIdx === rowIndex && cIdx === colIndex ? true : stamp))
-      )
-    )
-  }
   const handleCardFlip = () => {
     setIsFlipped((prev) => !prev);
   };
