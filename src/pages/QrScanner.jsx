@@ -3,7 +3,7 @@ import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
 import '../styles/QrScanner.css'
 
-const QrScanner = ({addStamp}) => {
+export const QrScanner = ({addStamp}) => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
   const [facingMode, setFacingMode] = useState('environment'); // カメラの向きを切り替えるためのステート
   const navigate = useNavigate(); // React Routerのナビゲーション
