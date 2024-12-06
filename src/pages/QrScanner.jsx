@@ -43,8 +43,8 @@ export const QrScanner = ({addStamp}) => {
   };
 
   return (
-    <div className='container'>
-      <h2 className='title'>QRコードをスキャンしてください</h2>
+    <div style={{ textAlign: 'center' }}>
+      <h2>QRコードをスキャンしてください</h2>
       
       <div className='qrReader'>
         <QrReader
@@ -61,7 +61,6 @@ export const QrScanner = ({addStamp}) => {
         />
       </div>
       
-
       <button className='toggleButton' onClick={toggleFacingMode}>
         カメラを{facingMode === 'user' ? '外' : '内'}カメラに切り替える  
       </button>
