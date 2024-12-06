@@ -15,19 +15,18 @@ import { QrScanner }  from './pages/QrScanner'
 function App() {
   const [stampCount, setStampCount] = useState(() => {
     // localStorageから初期値を取得
-    const savedCount = localStorage.getItem('stampCount')
-    return savedCount ? parseInt(savedCount, 10) : 0;
-  })
+    const savedCount = localStorage.getItem('stampCount');
+    return savedCount ? perseInt(savedCount, 10) : 0;  }
+  ); 
 
-  // スタンプ数をlocalStorageに保存
   useEffect(() => {
-    localStorage.setItem('stampCount', stampCount)
-  }, [stampCount]);
-
+    localStorage.setItem('stampCount', stampCount);
+    }, [stampCount]);
+    
   // スタンプを1つ追加する関数
   const addStamp = () => {
     setStampCount((prevCount) => prevCount + 1);
-  };
+  }
 
   return (
 
@@ -39,6 +38,8 @@ function App() {
         <Route path="/Signup" element={<Signup/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/QRcode" element={<QrScanner/>} />
+        <Route path='/' element={<QrScanner addStamp={addStamp} />} />
+        <Route path='../components/PointCard' element={<Home stampCount={stampCount}/>} />
         <Route path="/Inquiry" element={<Inquiry/>} />
       </Routes>
       <Footer/>

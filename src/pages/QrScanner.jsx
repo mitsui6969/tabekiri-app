@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
+import PointCard from '../components/PointCard/pointCard';
 import '../styles/QrScanner.css'
 
 export const QrScanner = ({addStamp}) => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
   const [facingMode, setFacingMode] = useState('environment'); // カメラの向きを切り替えるためのステート
   const navigate = useNavigate(); // React Routerのナビゲーション
-
 
   // QRコード読み取り成功時の処理
   const handleScan = (result) => {
@@ -22,7 +22,10 @@ export const QrScanner = ({addStamp}) => {
       addStamp();
 
       // QRコードが読み込まれたらホーム画面に遷移
-      navigate('/')
+      navigate('/');
+
+      // スタンプを1つ追加
+      addStamp();
     }
   }
 
