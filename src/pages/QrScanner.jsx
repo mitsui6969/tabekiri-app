@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const QrScanner = () => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
-  const [isFrontCamera, setIsFrontCamera] = useState(false); //　カメラの向きを切り替えるためのステート
+  const [facingMode, setFacingMode] = useState('environment'); //　カメラの向きを切り替えるためのステート
   const navigate = useNavigate(); // React Routerのナビゲーション
 
 
@@ -35,13 +35,16 @@ export const QrScanner = () => {
   };
 
   // カメラの向きを切り替える処理
-  const toggleCamera = () => {
-    setIsFrontCamera((prev) => !prev); // カメラの向きを反転
+  const toggleFacingMode = () => {
+    setFacingMode((prevMode) => 
+      prevMode === 'user' ? 'environment' : 'user'
+    ); // カメラの向きを切り替える
   };
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h2>QRコードをスキャンしてください</h2>
+      <h2>QRコードをスキャン</h2>
+      <h2>してください</h2>
       
       <QrReader
         onResult={(result, error) => {
@@ -52,12 +55,12 @@ export const QrScanner = () => {
             handleError(error);
           }
         }}
-        constraints={{ facingMode: isFrontCamera ? 'user' : 'environment' }} // 背面カメラを使用する
+        constraints={{ facingMode}} // facingModeを利用してカメラの向きを設定
         style={{ width: '300px', margin: '0 auto' }}
       />
 
-      <button onClick={toggleCamera} style={{ margin: '10px'}}>
-        カメラを{isFrontCamera ? '外' : '内'}カメラに切り替える  
+      <button onClick={toggleFacingMode} style={{ margin: '10px'}}>
+        カメラを{facingMode === 'user' ? '外' : '内'}カメラに切り替える  
       </button>
 
       <p style = {styles.result}>スキャン結果: {data}</p>
