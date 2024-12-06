@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 垂直方向の中央 */
+    align-items: center;    /* 水平方向の中央 */
+    height: 100%;           /* 画面全体の高さ */
+    text-align: center;
+}
+
+.title {
+    margin: 20px;
+}
+
+.qrReader {
+    width: 300px; /* QrReaderの幅を指定 */
+    max-width: 100%;
+}
+
+.toggleButton {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.toggleButton:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    margin-top: 20px;
+}
