@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import './App.css'
 import { Home } from "./pages/Home"
@@ -13,8 +13,16 @@ import { QrScanner }  from './pages/QrScanner'
 
 
 function App() {
-  const [stampCount, setStampCount] = useState(0); // スタンプ数の状態
+  const [stampCount, setStampCount] = useState(() => {
+    // localStorageから初期値を取得
+    const savedCount = localStorage.getItem('stampCount');
+    return savedCount ? perseInt(savedCount, 10) : 0;  }
+  ); 
 
+  useEffect(() => {
+    localStorage.setItem('stampCount', stampCount);
+    }, [stampCount]);
+    
   // スタンプを1つ追加する関数
   const addStamp = () => {
     setStampCount((prevCount) => prevCount + 1);
