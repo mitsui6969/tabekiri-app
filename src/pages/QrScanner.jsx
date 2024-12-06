@@ -17,6 +17,9 @@ export const QrScanner = ({addStamp}) => {
       // 効果音を再生
       Sound();
 
+      // スタンプを1つ追加
+      addStamp();
+      
       // QRコードが読み込まれたらホーム画面に遷移
       navigate('/')
     }
