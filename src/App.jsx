@@ -8,13 +8,12 @@ import { Login } from './pages/login'
 import { Signup } from './pages/Signup'
 import { Header } from './components/Header/header'
 import { Footer } from './components/footer/footer'
-import { QrScanner }  from './pages/QrScanner'
-import PointCard from './components/PointCard/pointCard';
+import { QrScanner } from "./pages/QrScanner";
 
 
 
 function App() {
-  const [stampCount, serStampCount] = useState(() => {
+  const [stampCount, setStampCount] = useState(() => {
     // localStorageから初期値を取得
     const savedCount = localStorage.getItem('stampCount')
     return savedCount ? parseInt(savedCount, 10) : 0;
