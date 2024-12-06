@@ -1,21 +1,38 @@
 * {
     margin: 0;
     padding: 0;
-}
-
-html {
+  }
+  
+  html {
     height: 100%;
     width: 100vw;
     background-color: #f3e4d7;
-}
-
-body {
+  }
+  
+  body {
     height: 100%;
     width: 390px;
     background-color: #fff;
-
     margin: 0 auto;
-
     align-items: center;
     text-align: center;
-}
+  }
+  
+  .pointCard {
+    transition: transform 0.3s ease; /* 動きにアニメーションを追加 */
+    margin-top: 20px;
+  }
+  
+  .pointCard.shifted {
+    transform: translateY(100px); /* 下に100px移動 */
+  }
+  
+  .header {
+    position: relative;
+    z-index: 10; /* メニューを前面に表示 */
+  }
+  
+  .pointCard {
+    position: relative;
+    z-index: 5; /* ポイントカードを背面に表示 */
+  }

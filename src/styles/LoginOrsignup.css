@@ -5,30 +5,124 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #ffffff; /* 背景は白のまま */
+    color: #333333;
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow: hidden;
 }
 
+/* 見出しスタイル */
 h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 36px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    border-bottom: 3px solid #cccccc;
+    padding-bottom: 15px;
+    text-transform: uppercase;
+    color: #555555;
+    position: relative;
+    animation: fadeIn 1s ease-in-out; /* フェードインアニメーション */
 }
 
+/* ボタンコンテナ */
 .button-container {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap; /* スマホ画面で折り返す */
+    justify-content: center;
 }
 
+/* ボタンのスタイル */
 .menu-button {
-    padding: 10px 20px;
-    font-size: 16px;
+    position: relative;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
     border: none;
-    border-radius: 4px;
+    border-radius: 50px;
     cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    transition: background-color 0.3s;
+    background: linear-gradient(135deg, #4CAF50, #81C784);
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    overflow: hidden; /* 波紋アニメーションのため */
 }
 
+/* ボタン内アイコン */
+.menu-button span.icon {
+    margin-right: 10px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+/* 波紋アニメーション */
+.menu-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    transition: all 0.6s;
+}
+
+.menu-button:active::after {
+    width: 300%;
+    height: 300%;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+/* ホバー時のスタイル */
 .menu-button:hover {
-    background-color: #45a049;
+    background: linear-gradient(135deg, #45a049, #66bb6a);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+/* ツールチップ */
+.menu-button::before {
+    content: attr(data-tooltip); /* ツールチップのテキストを表示 */
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333333;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.menu-button:hover::before {
+    opacity: 1;
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+    .menu-button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
