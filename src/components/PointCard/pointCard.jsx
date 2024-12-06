@@ -29,16 +29,6 @@ export const PointCard = () => {
     fetchUserName(); // コンポーネントのマウント時にユーザー名を取得
   }, []);
 
-  const handleStampClick = (rowIndex, colIndex) => {
-    setStamps((prevStamps) =>
-      prevStamps.map((row, rIdx) =>
-        row.map((stamp, cIdx) =>
-          rIdx === rowIndex && cIdx === colIndex ? true : stamp
-        )
-      )
-    );
-  };
-
   const handleCardFlip = () => {
     setIsFlipped((prev) => !prev);
   };
