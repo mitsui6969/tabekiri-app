@@ -3,7 +3,7 @@ import { doc, getDoc } from 'firebase/firestore'; // Firestoreを使う
 import { db } from "../../firebase/firebase"; // Firebase設定をインポート
 import './pointCard.css';
 
-export const PointCard = () => {
+export const PointCard = ({stampCount}) => {
   const [stamps, setStamps] = useState(
     Array(2).fill(Array(5).fill(false))
   );
