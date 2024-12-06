@@ -4,8 +4,8 @@ import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from "../../firebase/firebase";
 import './pointCard.css';
 
-export const PointCard = ({stampCount}) => {
-  const [stamps, setStamps] = useState(
+export const PointCard = ({}) => {
+  const [stamps] = useState(
     Array(2).fill(Array(5).fill(false))
   );
   const [cardColor, setCardColor] = useState('#ff4d4d');

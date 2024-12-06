@@ -15,8 +15,8 @@ import { PointCard } from './components/PointCard/pointCard';
 function App() {
   const [stampCount, setStampCount] = useState(() => {
     const savedCount = localStorage.getItem('stampCount');
-    return savedCount ? parseInt(savedCount, 10) : 0;  }
-  ); 
+    return savedCount ? parseInt(savedCount, 10) : 0;
+  }); 
 
   useEffect(() => {
     localStorage.setItem('stampCount', stampCount);
@@ -32,7 +32,7 @@ function App() {
     <Router>
       <Header/>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/LoginOrSignup" element={<LoginOrSignup/>} />
         <Route path="/Signup" element={<Signup/>} />
         <Route path="/login" element={<Login/>} />

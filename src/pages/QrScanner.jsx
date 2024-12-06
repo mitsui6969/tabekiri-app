@@ -21,7 +21,7 @@ export const QrScanner = ({addStamp}) => {
       addStamp();
       
       // QRコードが読み込まれたらホーム画面に遷移
-      navigate('/')
+      navigate('/PointCard')
     }
   }
 
