@@ -35,9 +35,8 @@ export const PointCard = () => {
         row.map((stamp, cIdx) =>
           rIdx === rowIndex && cIdx === colIndex ? true : stamp
         )
-      )
-    );
-  };
+        );
+    };
 
   const handleCardFlip = () => {
     setIsFlipped((prev) => !prev);
@@ -101,8 +100,8 @@ export const PointCard = () => {
                   </div>
                 ))
               )}
+
             </div>
-          </div>
 
           <div
             className="card-back"
@@ -114,9 +113,7 @@ export const PointCard = () => {
             <p>{userName ? `こんにちは、${userName}さん！` : 'ユーザー名を読み込み中...'}</p>
           </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default PointCard;
