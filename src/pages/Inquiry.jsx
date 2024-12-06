@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/inquiry.css'
 
-function Inquiry() {
+export function Inquiry() {
   return (
     <div className="container">
       <div className="info-section">

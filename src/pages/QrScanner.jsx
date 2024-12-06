@@ -7,6 +7,7 @@ export const QrScanner = ({addStamp}) => {
   const [facingMode, setFacingMode] = useState('environment'); // カメラの向きを切り替えるためのステート
   const navigate = useNavigate(); // React Routerのナビゲーション
 
+
   // QRコード読み取り成功時の処理
   const handleScan = (result) => {
     if (result) {
@@ -17,10 +18,7 @@ export const QrScanner = ({addStamp}) => {
       Sound();
 
       // QRコードが読み込まれたらホーム画面に遷移
-      navigate('/');
-
-      // スタンプを1つ追加
-      addStamp();
+      navigate('/')
     }
   }
 
