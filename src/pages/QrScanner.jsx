@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
-import PointCard from '../components/PointCard/pointCard';
-import '../styles/QrScanner.css'
 
 export const QrScanner = ({addStamp}) => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
@@ -40,9 +38,7 @@ export const QrScanner = ({addStamp}) => {
 
   // カメラの向きを切り替える処理
   const toggleFacingMode = () => {
-    setFacingMode((prevMode) => 
-      prevMode === 'user' ? 'environment' : 'user'
-    ); // カメラの向きを切り替える
+    setFacingMode((prevMode) => (prevMode === 'user' ? 'environment' : 'user')); // カメラの向きを切り替える
   };
 
   return (
@@ -59,7 +55,7 @@ export const QrScanner = ({addStamp}) => {
               handleError(error);
             }
           }}
-          constraints={{ facingMode}} // facingModeを利用してカメラの向きを設定
+          constraints={{ facingMode }} // facingModeを利用してカメラの向きを設定
           // style={{ width: '300px', margin: '0 auto' }}
         />
       </div>

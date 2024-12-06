@@ -10,7 +10,7 @@ import { Header } from './components/Header/header'
 import { Footer } from './components/footer/footer'
 import { QrScanner }  from './pages/QrScanner'
 import { Inquiry } from './pages/Inquiry'
-
+import { PointCard } from './components/PointCard/pointCard';
 
 
 function App() {
@@ -22,11 +22,11 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('stampCount', stampCount);
-    }, [stampCount]);
+  }, [stampCount]);
     
   // スタンプを1つ追加する関数
   const addStamp = () => {
-    setStampCount((prevCount) => prevCount + 1);
+    setStampCount((prevCount) => Math.min(prevCount + 1, 10));
   }
 
   return (
@@ -40,11 +40,11 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/QRcode" element={<QrScanner/>} />
         <Route path='/' element={<QrScanner addStamp={addStamp} />} />
-        <Route path='../components/PointCard' element={<Home stampCount={stampCount}/>} />
+        <Route path='/PointCard' element={<PointCard stampCount={stampCount}/>} />
         <Route path="/Inquiry" element={<Inquiry/>} />
       </Routes>
       <Footer/>
     </Router>
   )
 }
-export default App
+export default App;
