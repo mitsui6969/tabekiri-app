@@ -1,0 +1,43 @@
+.container {
+  height: 100%;
+  align-items: center;
+}
+
+
+.info-section h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+  .info-section p {
+    margin: 5px 0;
+  }
+  
+  .info-section a {
+    color: #2361f2;
+    text-decoration: none;
+  }
+  
+  .info-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .contact-section {
+    flex: 1;
+    text-align: center;
+    border-left: 2px solid #ffffff;
+    padding-left: 20px;
+  }
+  
+  .contact-section h3 {
+    margin: 0 0 10px 0;
+  }
+  
+  .phone-number {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .hours {
+    font-size: 14px;
+  } 
