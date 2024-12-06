@@ -54,7 +54,7 @@ export const QrScanner = ({addStamp}) => {
             }
           }}
           constraints={{ facingMode }} // facingModeを利用してカメラの向きを設定
-          // style={{ width: '300px', margin: '0 auto' }}
+          style={{ width: '300px', margin: '0 auto' }}
         />
       </div>
       
