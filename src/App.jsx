@@ -9,6 +9,7 @@ import { Signup } from './pages/Signup'
 import { Header } from './components/Header/header'
 import { Footer } from './components/footer/footer'
 import { QrScanner }  from './pages/QrScanner'
+import { Inquiry } from './pages/Inquiry'
 
 
 
@@ -16,7 +17,7 @@ function App() {
   const [stampCount, setStampCount] = useState(() => {
     // localStorageから初期値を取得
     const savedCount = localStorage.getItem('stampCount');
-    return savedCount ? perseInt(savedCount, 10) : 0;  }
+    return savedCount ? parseInt(savedCount, 10) : 0;  }
   ); 
 
   useEffect(() => {
