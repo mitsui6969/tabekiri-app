@@ -1,12 +1,16 @@
 import React from "react";
 
-const CreatePost = () => {
+const CreatePost = ({handleShowModal}) => {
+    const handleCloseModal = () => {
+        handleShowModal(false);
+    }
+
     return (
         <>
         <div id="overlay">
             <div id="modalContent">
             <p>This is ModalContent</p>
-            <button>Close</button>
+            <button onClick={handleCloseModal}>Close</button>
             </div>
         </div>
         </>

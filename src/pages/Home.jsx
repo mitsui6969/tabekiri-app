@@ -4,6 +4,7 @@ import { app } from '../firebase/firebase'; // Firebaseアプリの設定ファ�
 import Post from '../components/Post/post'; // Postコンポーネントをインポート
 import { PointCard } from '../components/PointCard/pointCard';
 import '../styles/home.css'
+import CreatePost from '../components/CreatePost/createPost';
 
 export function Home() {
   const [posts, setPosts] = useState([]); // 投稿データの状態管理
@@ -13,6 +14,11 @@ export function Home() {
   const handleNavigate = () => {
     window.location.href = "https://www.infra-linux.com/linux-ex-menu/#%E6%BC%94%E7%BF%92%EF%BC%90%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%90";
   };
+
+  // モーダルウィンドウの表示非表示
+  const handleShowModal = (bool) => {
+    setShowModal(bool);
+  }
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -35,30 +41,32 @@ export function Home() {
     fetchPosts();
   }, [db]);
 
+
+
   return (
     <div>
+      <button onClick={() => handleShowModal(true)}>write</button>
+
       <div className='home-page'>
-      
-      <button onClick={setShowModal(true)}>write</button>
+        {/* ポイントカードの表示 */}
+        <div className="pointCard">
+          <PointCard />
+        </div>
 
-
-      {/* ポイントカードの表示 */}
-      <div className="pointCard">
-        <PointCard />
+        {/* タイムライン */}
+        <div className="timeline">
+          <h4>TL</h4>
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <Post key={post.id} postId={post.id} /> // Postコンポーネントを利用
+            ))
+          ) : (
+            <p>投稿がありません。</p>
+          )}
+        </div>
       </div>
 
-      {/* タイムライン */}
-      <div className="timeline">
-        <h4>TL</h4>
-        {posts.length > 0 ? (
-          posts.map((post) => (
-            <Post key={post.id} postId={post.id} /> // Postコンポーネントを利用
-          ))
-        ) : (
-          <p>投稿がありません。</p>
-        )}
-      </div>
-      </div>
+      {showModal && <CreatePost handleShowModal={handleShowModal}/>}
     </div>
   );
 }
