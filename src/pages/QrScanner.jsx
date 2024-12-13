@@ -63,7 +63,9 @@ export const QrScanner = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h2>QRコードをスキャンしてください</h2>
+      <h1 style={{ margin: '0', padding: '20px 0' }}>QRコードをスキャン</h1>
+      <h1>してください</h1>
+
 
       <div className="qrReader">
         <QrReader
