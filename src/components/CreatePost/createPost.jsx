@@ -10,8 +10,18 @@ const CreatePost = ({handleShowModal}) => {
         <>
         <div id="overlay">
             <div id="modalContent">
-            <p>This is ModalContent</p>
-            <button onClick={handleCloseModal}>Close</button>
+                <div className="modalTop">
+                    <button onClick={handleCloseModal}>キャンセル</button>
+                    <button>投稿</button>
+                </div>
+                <div className="modalCenter">
+                    {/* ここに書く */}
+                    <p>最近どう？</p>
+                </div>
+                <div className="modalBottom">
+                    {/* ここに画像選択とか、文字数とか */}
+                </div>
+                
             </div>
         </div>
         </>
