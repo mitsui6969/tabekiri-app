@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/firebase";
-import "../styles/login.css";
+import "../styles/Signup.css";
 
 export function Login() {
     const [email, setEmail] = useState("");
@@ -24,7 +24,8 @@ export function Login() {
     };
 
     return (
-        <div className="container">
+        <div className="signup-container">
+            <div className='form-wrapper'>
             <h2>ログイン</h2>
             <form onSubmit={handleSubmit}>
                 <input
@@ -49,7 +50,9 @@ export function Login() {
             </form>
             <p className="navi-signup">新規登録は<a href="/Signup">こちら</a></p>
             {error && <div className="error-message">{error}</div>}
+            </div>
         </div>
+
     );
 }
 
