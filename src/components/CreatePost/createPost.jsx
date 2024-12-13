@@ -2,14 +2,14 @@ import React from "react";
 import './createPost.css'
 import { TextField } from "@mui/material";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { app } from "../firebase/firebase";
-import firebase from '../../firebase/firebase'
+import { app } from "../../firebase/firebase";
+// import firebase from '../../firebase/firebase'
 
 const CreatePost = ({handleShowModal}) => {
     const db = getFirestore(app);
     const [textPost, setTextPost] = ('');
-    const [images, setImages] = (null);
-    const [shopInfo, setShopInfo] = (null);
+    // const [images, setImages] = (null);
+    // const [shopInfo, setShopInfo] = (null);
 
     const handleCloseModal = () => {
         handleShowModal(false);
@@ -26,8 +26,8 @@ const CreatePost = ({handleShowModal}) => {
                 caption: textPost, // 投稿の内容
                 action: 0, // いいね数の初期値
                 date: serverTimestamp(), // サーバーの現在時刻
-                image: images, // 仮の画像情報
-                shop: shopInfo, // 仮のお店情報
+                // image: images, // 仮の画像情報
+                // shop: shopInfo, // 仮のお店情報
                 uid: "user-id-placeholder", // ユーザーID（本来は認証から取得する）
             });
             handleCloseModal(); // モーダルを閉じる
@@ -43,7 +43,7 @@ const CreatePost = ({handleShowModal}) => {
             <div id="modalContent">
                 <div className="modalTop">
                     <button onClick={handleCloseModal}>キャンセル</button>
-                    <button>投稿</button>
+                    <button onClick={pushPost}>投稿</button>
                 </div>
                 <div className="modalCenter">
                     {/* ここに書く */}
