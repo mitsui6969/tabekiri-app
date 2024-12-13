@@ -6,7 +6,7 @@ import { auth, db } from '../firebase/firebase';
 
 export const QrScanner = () => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
-  const [facingMode, setFacingMode] = useState('environment'); // カメラの向きを切り替えるためのステート
+  const [facingMode] = useState('environment'); // カメラの向きを切り替えるためのステート
   const navigate = useNavigate(); // React Routerのナビゲーション
 
   // QRコード読み取り成功時の処理
@@ -61,11 +61,6 @@ export const QrScanner = () => {
     console.error(err); // エラーをコンソールに表示
   };
 
-  // カメラの向きを切り替える処理
-  const toggleFacingMode = () => {
-    setFacingMode((prevMode) => (prevMode === 'user' ? 'environment' : 'user')); // カメラの向きを切り替える
-  };
-
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>QRコードをスキャンしてください</h2>
@@ -84,10 +79,6 @@ export const QrScanner = () => {
           style={{ width: '300px', margin: '0 auto' }}
         />
       </div>
-
-      <button className="toggleButton" onClick={toggleFacingMode}>
-        カメラを{facingMode === 'user' ? '外' : '内'}カメラに切り替える
-      </button>
 
       <p className="result">スキャン結果: {data}</p>
     </div>
