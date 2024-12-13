@@ -12,6 +12,9 @@
 }
 
 #modalContent {
+    height: 60%;
+    width: 60%;
+    min-width: 390px;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
