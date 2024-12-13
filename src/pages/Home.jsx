@@ -1,4 +1,5 @@
 import React from 'react';
+import {Footer} from '../components/footer/footer';
 import { PointCard } from '../components/PointCard/pointCard';
 
 export function Home() {
@@ -13,6 +14,7 @@ export function Home() {
       <div className='pointCard'>
         <PointCard />
       </div>
+      <Footer/>
     </div>
   );
 }

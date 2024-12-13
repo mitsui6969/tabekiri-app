@@ -10,7 +10,6 @@ import { LoginOrSignup } from './pages/LoginOrSignup';
 import { Login } from './pages/login';
 import { Signup } from './pages/Signup';
 import { Header } from './components/Header/header';
-import { Footer } from './components/footer/footer';
 import { QrScanner } from './pages/QrScanner';
 import { Inquiry } from './pages/Inquiry';
 import { PointCard } from './components/PointCard/pointCard';
@@ -77,7 +76,6 @@ function App() {
         <Route path="/PointCard" element={<PointCard stampCount={stampCount} />} />
         <Route path="/Inquiry" element={<Inquiry />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }
