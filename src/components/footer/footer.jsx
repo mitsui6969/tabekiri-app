@@ -6,12 +6,21 @@ export const Footer = () => {
     
     
     return(
-        <div className="background-bar">
-            <Link to='/QRcode'>
-                <div className="circle-button">
-                    <img src="https://via.placeholder.com/60x60.png?text=QR" alt="QR Code" />
-                </div>
-            </Link>
+        <div>
+            <div className="background-bar">
+                <Link to='/QRcode'>
+                    <div className="circle-button">
+                        <img src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_qrcode_1.png" alt="QR Code" />
+                    </div>
+                </Link>
+            </div>
+            <div className="under-bar">
+                <Link to='/QRcode'>
+                    <div className="coupon-button">
+                        <img src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_coupon_3.png" alt="AAA" />
+                    </div>
+                </Link>
+            </div>
         </div>
     )
 }
