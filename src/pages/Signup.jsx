@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase/firebase";
-import { db } from "../firebase/firebase";
+import { auth, db } from "../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import "../styles/login.css";
-import "../styles/Signup.css"
+import "../styles/Signup.css";
 
 export const Signup = () => {
   const [username, setUsername] = useState("");
@@ -15,21 +14,28 @@ export const Signup = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      setError("");
+    e.preventDefault();
+    setError("");
 
-      try {
-          // 新規登録処理
-          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-          const user = userCredential.user;
+    try {
+      // 新規登録処理
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-          const userRef = doc(db, "user", user.uid);
-          await setDoc(userRef, { username });
+      // Firestoreにユーザーデータを保存
+      const userRef = doc(db, "user", user.uid);
+      await setDoc(userRef, {
+        username: username,
+        points: 0, // 初期ポイント
+        coupons:0,//初期クーポン
+        email: email,
+      });
 
-          navigate("/login");
-      } catch (err) {
-          setError("メールまたはパスワードは使えません");
-      }
+      // 登録完了後にログインページへ遷移
+      navigate("/login");
+    } catch (err) {
+      setError("メールまたはパスワードは使えません");
+    }
   };
 
   return (
