@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
-import PointCard from '../components/PointCard/pointCard';
-import '../styles/QrScanner.css'
 
 export const QrScanner = ({addStamp}) => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
   const [facingMode, setFacingMode] = useState('environment'); // カメラの向きを切り替えるためのステート
   const navigate = useNavigate(); // React Routerのナビゲーション
+
 
   // QRコード読み取り成功時の処理
   const handleScan = (result) => {
@@ -18,11 +17,11 @@ export const QrScanner = ({addStamp}) => {
       // 効果音を再生
       Sound();
 
-      // QRコードが読み込まれたらホーム画面に遷移
-      navigate('/');
-
       // スタンプを1つ追加
       addStamp();
+      
+      // QRコードが読み込まれたらホーム画面に遷移
+      navigate('/')
     }
   }
 
@@ -40,15 +39,12 @@ export const QrScanner = ({addStamp}) => {
 
   // カメラの向きを切り替える処理
   const toggleFacingMode = () => {
-    setFacingMode((prevMode) => 
-      prevMode === 'user' ? 'environment' : 'user'
-    ); // カメラの向きを切り替える
+    setFacingMode((prevMode) => (prevMode === 'user' ? 'environment' : 'user')); // カメラの向きを切り替える
   };
 
   return (
-    <div className='container'>
-      <h2 className='title'>QRコードをスキャン</h2>
-      <h2>してください</h2>
+    <div style={{ textAlign: 'center' }}>
+      <h2>QRコードをスキャンしてください</h2>
       
       <div className='qrReader'>
         <QrReader
@@ -60,12 +56,11 @@ export const QrScanner = ({addStamp}) => {
               handleError(error);
             }
           }}
-          constraints={{ facingMode}} // facingModeを利用してカメラの向きを設定
-          // style={{ width: '300px', margin: '0 auto' }}
+          constraints={{ facingMode }} // facingModeを利用してカメラの向きを設定
+          style={{ width: '300px', margin: '0 auto' }}
         />
       </div>
       
-
       <button className='toggleButton' onClick={toggleFacingMode}>
         カメラを{facingMode === 'user' ? '外' : '内'}カメラに切り替える  
       </button>
