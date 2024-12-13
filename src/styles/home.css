@@ -17,3 +17,17 @@
 
     border: solid coral;
 }
+
+/* ボタン */
+#create-post-btn {
+    position: absolute;
+    right: 7%;
+    bottom: 10%;
+
+    height: 70px;
+    width: 70px;
+    border-radius: 40px;
+    border: none;
+
+    background-color: coral;
+}

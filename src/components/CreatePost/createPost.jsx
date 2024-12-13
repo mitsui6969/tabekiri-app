@@ -1,4 +1,5 @@
 import React from "react";
+import './createPost.css'
 
 const CreatePost = ({handleShowModal}) => {
     const handleCloseModal = () => {
