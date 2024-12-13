@@ -1,9 +1,15 @@
 import React from "react";
 import './createPost.css'
 import { TextField } from "@mui/material";
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { app } from "../firebase/firebase";
+import firebase from '../../firebase/firebase'
 
 const CreatePost = ({handleShowModal}) => {
-    const [TextPost, setTextPost] = ('');
+    const db = getFirestore(app);
+    const [textPost, setTextPost] = ('');
+    const [images, setImages] = (null);
+    const [shopInfo, setShopInfo] = (null);
 
     const handleCloseModal = () => {
         handleShowModal(false);
@@ -11,6 +17,24 @@ const CreatePost = ({handleShowModal}) => {
 
     const onChangeInput = (event) => {      //入力内容が変化したときに実行する関数
         setTextPost(event.target.value); 
+    };
+
+    const pushPost = async () => {
+        try {
+            // Firestoreにデータを保存
+            await addDoc(collection(db, "post"), {
+                caption: textPost, // 投稿の内容
+                action: 0, // いいね数の初期値
+                date: serverTimestamp(), // サーバーの現在時刻
+                image: images, // 仮の画像情報
+                shop: shopInfo, // 仮のお店情報
+                uid: "user-id-placeholder", // ユーザーID（本来は認証から取得する）
+            });
+            handleCloseModal(); // モーダルを閉じる
+        } catch (error) {
+            console.error("投稿保存中にエラーが発生しました:", error);
+            alert("投稿の保存に失敗しました。");
+        }
     };
 
     return (
