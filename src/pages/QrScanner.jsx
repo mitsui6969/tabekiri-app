@@ -7,7 +7,6 @@ export const QrScanner = ({addStamp}) => {
   const [facingMode, setFacingMode] = useState('environment'); // カメラの向きを切り替えるためのステート
   const navigate = useNavigate(); // React Routerのナビゲーション
 
-
   // QRコード読み取り成功時の処理
   const handleScan = (result) => {
     if (result) {
@@ -41,6 +40,20 @@ export const QrScanner = ({addStamp}) => {
   const toggleFacingMode = () => {
     setFacingMode((prevMode) => (prevMode === 'user' ? 'environment' : 'user')); // カメラの向きを切り替える
   };
+
+  let cameraSelect = document.getElementById('cameraSelect');
+
+  cameraSelect.addEventListener('change', async () => {
+    let constraints = {
+      video: {
+        facingMode: cameraSelect.value
+      }
+    };
+
+    stream = await navigator.mediaDevices.getUserMedia(constraints);
+    video.srcObject = stream;
+  })
+
 
   return (
     <div style={{ textAlign: 'center' }}>
