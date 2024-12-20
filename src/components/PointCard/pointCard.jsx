@@ -1,66 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from "../../firebase/firebase";
 import './pointCard.css';
 
 export const PointCard = () => {
   const [points, setPoints] = useState(0); // 現在のポイント数
+  const [coupons, setCoupons] = useState(0); // 現在のクーポン数
   const [cardColor, setCardColor] = useState('#ff4d4d');
   const [isFlipped, setIsFlipped] = useState(false);
   const [userName, setUserName] = useState(); // ユーザー名
   const [error, setError] = useState(''); // エラー管理用
   const [userId, setUserId] = useState(null); // 現在のユーザーID
-  const [coupons, setCoupons] = useState(0); // クーポン残数
 
-  // Firestore からユーザーデータを取得
-  const fetchUserData = async (uid) => {
-    try {
-      const userDoc = await getDoc(doc(db, 'user', uid));
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        setUserName(userData.username);
-        setPoints(userData.points || 0); // ポイント情報を取得
-        setCoupons(userData.coupons || 0); // クーポン残数を取得
-      } else {
-        setError('ユーザーデータが見つかりません');
-      }
-    } catch (err) {
-      console.error('Error fetching user data:', err);
-      setError('データ取得中にエラーが発生しました');
-    }
-  };
-
-  // Firestore のポイントを更新
-  const addPointToFirestore = async () => {
-    if (!userId) return;
-
-    try {
-      const userRef = doc(db, 'user', userId);
-      const newPoints = Math.min(points + 1, 10); // 最大 10 ポイント
-      await updateDoc(userRef, { points: newPoints });
-      setPoints(newPoints); // ローカル状態も更新
-    } catch (err) {
-      console.error('Error updating points:', err);
-    }
-  };
-
-  // QRコード読み取り時にポイントを追加
-  const handleQrScan = () => {
-    addPointToFirestore(); // Firestore のポイントを更新
-  };
-
+  // Firestore からユーザーデータをリアルタイムで監視
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserId(user.uid);
-        fetchUserData(user.uid); // ユーザーデータを取得
+        const userRef = doc(db, 'user', user.uid);
+
+        // Firestoreのデータをリアルタイムで監視
+        const unsubscribeSnapshot = onSnapshot(userRef, (snapshot) => {
+          if (snapshot.exists()) {
+            const userData = snapshot.data();
+            setPoints(userData.points || 0);
+            setCoupons(userData.coupons || 0);
+            setUserName(userData.username || "匿名ユーザー");
+
+            // ポイントが10以上になった場合の処理
+            if (userData.points >= 10) {
+              resetPointsAndAddCoupon(userRef, userData.points, userData.coupons);
+            }
+          } else {
+            setError("ユーザーデータが見つかりません");
+          }
+        });
+
+        return () => unsubscribeSnapshot();
       } else {
-        setError('ログインが必要です');
+        setError("ログインが必要です");
       }
     });
+
     return () => unsubscribe();
   }, []);
+
+  // Firestoreでポイントをリセットし、クーポンを追加
+  const resetPointsAndAddCoupon = async (userRef, currentPoints, currentCoupons) => {
+    try {
+      await updateDoc(userRef, {
+        points: currentPoints - 10, // 10ポイント消費
+        coupons: currentCoupons + 1, // クーポン1つ追加
+      });
+
+      console.log("クーポンが追加され、ポイントがリセットされました");
+    } catch (err) {
+      console.error("Firestoreの更新中にエラーが発生しました:", err);
+    }
+  };
 
   const handleCardFlip = () => {
     setIsFlipped((prev) => !prev);
@@ -87,7 +85,6 @@ export const PointCard = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-
       <div style={{ marginBottom: '10px' }}>
         <label htmlFor="card-color">カードの色を選択:</label>
         <input
@@ -137,8 +134,8 @@ export const PointCard = () => {
             }}
           >
             <p>{userName ? `こんにちは、${userName}さん！` : 'ユーザー名を読み込み中...'}</p>
+            <p>現在のクーポン: {coupons}</p>
             {error && <p className="error">{error}</p>}
-            <p>クーポン残数: {coupons !== null ? coupons : '読み込み中...'}</p>
           </div>
         </div>
       </div>
