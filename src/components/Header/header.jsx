@@ -24,7 +24,7 @@ export const Header = () => {
                                 <Link to={'/bluebutton'} className="link">map</Link>
                             </li>
                             <li>
-                                <Link to={'/Inquiry'} className='link'>問い合わせフォーム</Link>
+                                <Link to={'/Inquiry'} className='link'>お問い合わせ</Link>
                             </li>
                         </ul>
                     </nav>
