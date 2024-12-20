@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from './firebase/firebase'; // Firebase設定
-
+import { CreatePost } from './components/CreatePost/createPost';
 import './App.css';
 import { Home } from "./pages/Home";
 import { LoginOrSignup } from './pages/LoginOrSignup';
@@ -75,6 +75,7 @@ function App() {
         <Route path="/QRcode" element={<QrScanner addStamp={addStamp} />} />
         <Route path="/PointCard" element={<PointCard stampCount={stampCount} />} />
         <Route path="/Inquiry" element={<Inquiry />} />
+        <Route path="/Post" element={<CreatePost />} />
       </Routes>
     </Router>
   );
