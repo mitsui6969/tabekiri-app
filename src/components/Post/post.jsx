@@ -4,6 +4,7 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Firebase Fire
 // import { getAuth } from 'firebase/auth'; // Firebase認証用
 import { app } from '../../firebase/firebase'; // Firebaseアプリの設定ファイルをインポート
 import './post.css'; // CSSファイルでスタイルを適用
+import { Card } from '@mui/material';
 
 const Post = ({ postId }) => {
     const [postData, setPostData] = useState(null);
@@ -48,6 +49,7 @@ const Post = ({ postId }) => {
 
     return (
         <div className="post">
+            <Card>
             {/* アイコン */}
             {/* <div className="post__icon">
                 
@@ -79,6 +81,7 @@ const Post = ({ postId }) => {
             <div className="post__date">
                 <small>{new Date(postData.date.seconds * 1000).toLocaleString()}</small>
             </div>
+            </Card>
         </div>
     );
 };
