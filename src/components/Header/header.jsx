@@ -9,10 +9,12 @@ export const Header = () => {
                 {/* ロゴセクション */}
                 <Link to="/" className="logo">LOGO</Link>
 
+
                 {/* メニューセクション */}
                 <details className="menu-details">
                     <summary className="menu-button">☰ Menu</summary>
                     <nav className="menu">
+
                         <ul>
                             <li>
                                 <Link to="/" className="menu-link">Home</Link>
@@ -21,6 +23,7 @@ export const Header = () => {
                                 <Link to="/login" className="menu-link">Login</Link>
                             </li>
                             <li>
+
                                 <Link to="/map" className="menu-link">Map</Link>
                             </li>
                             <li>
@@ -28,6 +31,7 @@ export const Header = () => {
                             </li>
                             <li>
                                 <Link to="/QRcode" className="menu-link">QRコード</Link>
+
                             </li>
                         </ul>
                     </nav>
