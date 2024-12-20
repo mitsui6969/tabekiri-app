@@ -1,88 +1,88 @@
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase/firebase';
 
 export const QrScanner = () => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
-  const [isFrontCamera, setIsFrontCamera] = useState(false); //　カメラの向きを切り替えるためのステート
+  const [facingMode] = useState('environment'); // カメラの向きを切り替えるためのステート
   const navigate = useNavigate(); // React Routerのナビゲーション
 
-
   // QRコード読み取り成功時の処理
-  const handleScan = (result) => {
+  const handleScan = async (result) => {
     if (result) {
       const scannedText = result.text;
       setData(scannedText); // 結果を更新
+
+      // ユーザーがログインしている場合にポイントを追加
+      const user = auth.currentUser;
+      if (user) {
+        await updatePoints(user.uid); // ポイントを更新
+      }
 
       // 効果音を再生
       Sound();
 
       // QRコードが読み込まれたらホーム画面に遷移
-      navigate('/')
+      navigate('/');
     }
-  }
+  };
+
+  // Firestoreのポイントを更新する関数
+  const updatePoints = async (uid) => {
+    try {
+      const userRef = doc(db, 'user', uid);
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        const currentPoints = userDoc.data().points || 0;
+        const newPoints = Math.min(currentPoints + 1, 10); // 最大10ポイントまで
+
+        await updateDoc(userRef, { points: newPoints });
+        console.log(`ポイントが更新されました: ${newPoints}`);
+      } else {
+        console.error('ユーザーデータが存在しません');
+      }
+    } catch (err) {
+      console.error('ポイント更新中にエラーが発生しました:', err);
+    }
+  };
 
   const Sound = () => {
     const audio = new Audio('ラッパのファンファーレ.mp3'); // 音声ファイルのパス
     audio.play().catch((error) => {
-      console.error("音声再生に失敗しました:", error);
-    })
-  }
-  
+      console.error('音声再生に失敗しました:', error);
+    });
+  };
+
   // 読み取りエラーの処理
   const handleError = (err) => {
     console.error(err); // エラーをコンソールに表示
   };
 
-  // カメラの向きを切り替える処理
-  const toggleCamera = () => {
-    setIsFrontCamera((prev) => !prev); // カメラの向きを反転
-  };
-
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>QRコードをスキャンしてください</h2>
-      
-      <QrReader
-        onResult={(result, error) => {
-          if (!!result) {
-            handleScan(result);
-          }
-          if (!!error) {
-            handleError(error);
-          }
-        }}
-        constraints={{ facingMode: isFrontCamera ? 'user' : 'environment' }} // 背面カメラを使用する
-        style={{ width: '300px', margin: '0 auto' }}
-      />
 
-      <button onClick={toggleCamera} style={{ margin: '10px'}}>
-        カメラを{isFrontCamera ? '外' : '内'}カメラに切り替える  
-      </button>
+      <div className="qrReader">
+        <QrReader
+          onResult={(result, error) => {
+            if (!!result) {
+              handleScan(result);
+            }
+            if (!!error) {
+              handleError(error);
+            }
+          }}
+          constraints={{ facingMode }} // facingModeを利用してカメラの向きを設定
+          style={{ width: '300px', margin: '0 auto' }}
+        />
+      </div>
 
-      <p style = {styles.result}>スキャン結果: {data}</p>
+      <p className="result">スキャン結果: {data}</p>
     </div>
   );
 };
 
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column', 
-    justifyContent: 'conter', // 垂直方向の中央
-    alignItems: 'center', // 水平方向の中央
-    height: '100vh', // 画面全体の高さ
-    textalign: 'center',
-  },
-  title: {
-    marginBottom: '20px',
-  },
-  qrReader: {
-    width: '300px', // QrReaderの幅を指定
-    maxWidth:'100%',
-  },
-  result: {
-    marginTop: '20px',
-  },
-}
 export default QrScanner;

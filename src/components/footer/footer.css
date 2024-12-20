@@ -1,10 +1,15 @@
 .footer {
-    width: 100%;
+    position: fixed;       /* 画面に固定 */
+    bottom: 0;             /* 画面の下端に配置 */
+    left: 0;               /* 左端に固定 */
+    width: 100%;           /* 横幅を全画面に広げる */
     display: flex;
     background-color: coral;
     padding: 10px 0;
     justify-content: center;
     box-sizing: border-box;
+    z-index: 1000;         /* 他の要素より前面に表示 */
+
 }
 
 footer {
@@ -34,11 +39,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    top: -30px;                 /* 背景の帯に半分被せる */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: absolute;         /* 絶対配置で調整 */
+    top: -30px;                 /* バーの上に配置 */
+    left: 65px;                /* 右端に配置 */
+    z-index: 10;                /* バーより前面に表示 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影をつける */
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s; /* カラートランジション */
 }
 
 /* ボタンにホバー時のスタイル */
@@ -52,3 +59,98 @@ footer {
     height: 60px;
 }
 
+.under-bar {
+    width: 100%;
+    max-width: 500px;
+    height: 80px;             /* 背景の帯の高さ */
+    background-color: #FFA500; /* オレンジ色 */
+    position: absolute;           /* 画面の下に固定 */
+    bottom: 0;
+    display: flex;
+    justify-content: center;   /* 横方向の中央揃え */
+}
+
+/* 丸いQRコードエリア */
+.coupon-button {
+    width: 100px;               /* 円の直径 */
+    height: 100px;              /* 円の直径 */
+    background-color: #fff;     /* 白背景 */
+    border-radius: 50%;         /* 丸くする */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;         /* 右端に配置するためにpositionをabsoluteに変更 */
+    top: -30px;                 /* 背景の帯に半分被せる */
+    right: 65px;                /* 右端からの距離 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: under-color 0.3s;
+}
+
+
+/* ボタンにホバー時のスタイル */
+.coupon-button:hover {
+    background-color: #f0f0f0; /* ホバー時の背景色 */
+}
+
+/* QRコードのイメージ */
+.coupon-button img {
+    width: 60px;
+    height: 60px;
+}
+
+/* モーダルの背景 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* モーダルの内容 */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* ボタンのスタイル */
+.modal-actions button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.confirm-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #f44336;
+    color: white;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
