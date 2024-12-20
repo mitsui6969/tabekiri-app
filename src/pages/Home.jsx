@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getFirestore, collection, getDocs, query, orderBy } from 'firebase/firestore'; // Firestore用
 import { app } from '../firebase/firebase'; // Firebaseアプリの設定ファイル
 import Post from '../components/Post/post'; // Postコンポーネントをインポート
+import {Footer} from '../components/footer/footer';
 import { PointCard } from '../components/PointCard/pointCard';
 import '../styles/home.css'
 import CreatePost from '../components/CreatePost/createPost';
@@ -67,6 +68,8 @@ export function Home() {
       </div>
 
       {showModal && <CreatePost handleShowModal={handleShowModal}/>}
+
+      <Footer/>
     </div>
   );
 }
