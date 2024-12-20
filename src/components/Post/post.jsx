@@ -66,7 +66,6 @@ const Post = ({ postId }) => {
 
             {/* ハッシュタグ (優先度低) */}
             <div className="post__hashtags">
-                {/* 必要であれば解析してタグを表示 */}
             </div>
 
             {/* 画像 */}
