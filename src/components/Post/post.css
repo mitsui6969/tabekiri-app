@@ -10,4 +10,12 @@
     border-radius: 10px;
     border: solid 1px #edf1f6;
     box-shadow: 0 1px 7px #edf1f6;
+    
+}
+
+.upper-container {
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0 10%;
 }
