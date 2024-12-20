@@ -26,11 +26,11 @@
     flex: 1;
     text-align: center;
     border-left: 2px solid #ffffff;
-    padding-left: 20px;
   }
   
   .contact-section h3 {
     margin: 0 0 10px 0;
+    text-align: center;
   }
   
   .phone-number {
