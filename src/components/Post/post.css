@@ -1,0 +1,9 @@
+.post {
+    height: auto;
+    width: 100%;
+
+    background-color: aquamarine;
+
+    margin: 5px;
+    padding: 10px 0;
+}

@@ -1,0 +1,33 @@
+.home-page {
+    height: 100%;
+    width: 100%;
+
+    overflow: scroll;
+}
+
+.timeline {
+    width: 85%;
+
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: solid coral;
+}
+
+/* ボタン */
+#create-post-btn {
+    position: absolute;
+    right: 7%;
+    bottom: 10%;
+
+    height: 70px;
+    width: 70px;
+    border-radius: 40px;
+    border: none;
+
+    background-color: coral;
+}
