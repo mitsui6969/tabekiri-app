@@ -8,25 +8,25 @@ export const Footer = () => {
     const [showModal, setShowModal] = useState(false); // クーポン使用確認モーダル
     const [showConfirmationModal, setShowConfirmationModal] = useState(false); // クーポン使用後モーダル
     const [showNoCouponsModal, setShowNoCouponsModal] = useState(false); // クーポンがないモーダル
-    const [qupons, setQupons] = useState(null); // クーポンの数
+    const [coupons, setCoupons] = useState(null); // クーポンの数
     const navigate = useNavigate();
     const db = getFirestore(); // Firestore インスタンス
     const auth = getAuth(); // 現在のユーザー情報
 
     // Firestore からクーポン数を取得
     useEffect(() => {
-        const fetchQupons = async () => {
+        const fetchCoupons = async () => {
             const user = auth.currentUser;
             if (!user) {
                 console.error('ユーザーがログインしていません');
                 return;
             }
             try {
-                const userDocRef = doc(db, 'users', user.uid);
+                const userDocRef = doc(db, 'user', user.uid);
                 const userDoc = await getDoc(userDocRef);
                 if (userDoc.exists()) {
                     const data = userDoc.data();
-                    setQupons(data.qupons || 0); // クーポン数をセット
+                    setCoupons(data.coupons || 0); // クーポン数をセット
                 } else {
                     console.error('ユーザードキュメントが存在しません');
                 }
@@ -35,11 +35,11 @@ export const Footer = () => {
             }
         };
 
-        fetchQupons();
+        fetchCoupons();
     }, [auth.currentUser, db]);
 
     const handleUseCoupon = async () => {
-        if (qupons <= 0) {
+        if (coupons <= 0) {
             setShowModal(false);
             setShowNoCouponsModal(true); // クーポンがないモーダルを表示
             return;
@@ -52,12 +52,12 @@ export const Footer = () => {
                 return;
             }
 
-            const userDocRef = doc(db, 'users', user.uid);
+            const userDocRef = doc(db, 'user', user.uid);
             await updateDoc(userDocRef, {
-                qupons: increment(-1),
+                coupons: increment(-1), // Firestore 内で直接クーポンを減らす
             });
 
-            setQupons((prevQupons) => prevQupons - 1); // ローカルのクーポン数を更新
+            setCoupons((prevCoupons) => prevCoupons - 1); // ローカルのクーポン数を更新
             setShowModal(false);
             setShowConfirmationModal(true); // 使用後モーダルを表示
         } catch (error) {
@@ -95,9 +95,9 @@ export const Footer = () => {
                 <div className="modal">
                     <div className="modal-content">
                         <p>クーポンを使用しますか？</p>
-                        {qupons !== null && (
+                        {coupons !== null && (
                             <p>
-                                現在のクーポン残数: <strong>{qupons}</strong>
+                                現在のクーポン残数: <strong>{coupons}</strong>
                             </p>
                         )}
                         <div className="modal-actions">
