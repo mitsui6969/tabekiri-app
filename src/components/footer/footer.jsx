@@ -68,25 +68,28 @@ export const Footer = () => {
 
     return (
         <div>
-            <div className="background-bar">
-                <Link to='/QRcode'>
-                    <div className="circle-button">
+            <div className="under-bar">
+                <div className='fot-btns'>
+                    <div className="background-bar">
+                        <Link to='/QRcode'>
+                            <div className="circle-button">
+                                <img
+                                    src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_qrcode_1.png"
+                                    alt="QR Code"
+                                />
+                            </div>
+                        </Link>
+                    </div>
+
+                    <div
+                        className="coupon-button"
+                        onClick={() => setShowModal(true)} // クーポン確認モーダルを開く
+                    >
                         <img
-                            src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_qrcode_1.png"
-                            alt="QR Code"
+                            src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_coupon_3.png"
+                            alt="AAA"
                         />
                     </div>
-                </Link>
-            </div>
-            <div className="under-bar">
-                <div
-                    className="coupon-button"
-                    onClick={() => setShowModal(true)} // クーポン確認モーダルを開く
-                >
-                    <img
-                        src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_coupon_3.png"
-                        alt="AAA"
-                    />
                 </div>
             </div>
 
