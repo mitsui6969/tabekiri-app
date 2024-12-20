@@ -38,7 +38,7 @@ footer {
     justify-content: center;
     position: absolute;         /* 絶対配置で調整 */
     top: -30px;                 /* バーの上に配置 */
-    left: 65px;                /* 右端に配置 */
+    left: 60px;                /* 右端に配置 */
     z-index: 10;                /* バーより前面に表示 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影をつける */
     cursor: pointer;
@@ -67,7 +67,7 @@ footer {
     justify-content: center;   /* 横方向の中央揃え */
 }
 
-/* 丸いQRコードエリア */
+/* 丸いクーポンエリア */
 .coupon-button {
     width: 100px;               /* 円の直径 */
     height: 100px;              /* 円の直径 */
@@ -78,7 +78,7 @@ footer {
     justify-content: center;
     position: absolute;         /* 右端に配置するためにpositionをabsoluteに変更 */
     top: -30px;                 /* 背景の帯に半分被せる */
-    right: 65px;                /* 右端からの距離 */
+    right: -50px;                /* 右端からの距離 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: under-color 0.3s;
