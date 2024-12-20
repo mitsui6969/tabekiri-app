@@ -5,6 +5,8 @@
     padding: 10px 0;
     justify-content: center;
     box-sizing: border-box;
+    bottom: 0;
+    position: absolute;
 }
 
 footer {

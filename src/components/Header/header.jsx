@@ -11,7 +11,7 @@ export const Header = () => {
                 </div>
 
                 <details>
-                    <summary className="menue">menu</summary>
+                    <summary className="menue">Menu</summary>
                     <nav className="navigates">
                         <ul>
                             <li>
@@ -21,7 +21,7 @@ export const Header = () => {
                                 <Link to={'/login'} className="link">Login</Link>
                             </li>
                             <li>
-                                <Link to={'/bluebutton'} className="link">map</Link>
+                                <Link to={'/bluebutton'} className="link">Map</Link>
                             </li>
                             <li>
                                 <Link to={'/Inquiry'} className='link'>お問い合わせ</Link>
