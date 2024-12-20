@@ -90,6 +90,26 @@ footer {
     height: 60px;
 }
 
+/* 投稿ボタン */
+#create-post-btn {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%; /* 完全な円形にする */
+    border: none;
+
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加して目立たせる */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* ホバー時のアニメーション */
+
+    z-index: 100;
+}
+
+/* ボタンにホバー時のスタイル */
+#create-post-btn:hover {
+    background-color: #f0f0f0; /* 少し明るい色に変更 */
+}
+
 /* モーダルの背景 */
 .modal {
     position: fixed;
