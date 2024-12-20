@@ -18,7 +18,7 @@ footer {
 
 .background-bar {
     width: 100%;
-    max-width: 390px;
+    max-width: 500px;
     height: 80px;             /* 背景の帯の高さ */
     background-color: #FFA500; /* オレンジ色 */
     position: absolute;           /* 画面の下に固定 */
