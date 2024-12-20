@@ -14,21 +14,26 @@ const Post = ({ postId }) => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                // 投稿データを取得
                 const postRef = doc(db, 'post', postId);
                 const postSnap = await getDoc(postRef);
 
-                if (postSnap.exists()) {
-                    setPostData(postSnap.data());
-
-                    // ユーザーデータを取得
-                    const userRef = doc(db, 'user', postSnap.data().uid);
-                    const userSnap = await getDoc(userRef);
-
-                    if (userSnap.exists()) {
-                        setUserData(userSnap.data());
-                    }
+                if (!postSnap.exists()) {
+                    console.error('Post not found:', postId);
+                    return;
                 }
+
+                const post = postSnap.data();
+                setPostData(post);
+
+                const userRef = doc(db, 'user', post.uid);
+                const userSnap = await getDoc(userRef);
+
+                if (!userSnap.exists()) {
+                    console.error('User not found for UID:', post.uid);
+                    return;
+                }
+
+                setUserData(userSnap.data());
             } catch (error) {
                 console.error('エラーが発生しました:', error);
             }
@@ -51,7 +56,7 @@ const Post = ({ postId }) => {
 
             {/* ユーザーネーム */}
             <div className="post__user">
-                <strong>{userData.name}</strong>
+                <strong>{userData.username}</strong>
             </div>
 
             {/* 投稿内容 */}
@@ -61,7 +66,6 @@ const Post = ({ postId }) => {
 
             {/* ハッシュタグ (優先度低) */}
             <div className="post__hashtags">
-                {/* 必要であれば解析してタグを表示 */}
             </div>
 
             {/* 画像 */}

@@ -14,11 +14,11 @@ export function Inquiry() {
           </a>
         </p>
       </div>
-      <div className="contact-section">
-        <h3>お問い合わせ</h3>
-        <p className="phone-number">076-220-2507</p>
-        <p className="hours">（受付時間9:00～17:45）</p>
-      </div>
+    <div className="contact-section">
+      <h3>お問い合わせ</h3>
+      <p className="phone-number">076-220-2507</p>
+      <p className="hours">（受付時間9:00～17:45）</p>
+    </div>
     </div>
   );
 }
