@@ -11,6 +11,7 @@ export const PointCard = () => {
   const [userName, setUserName] = useState(); // ユーザー名
   const [error, setError] = useState(''); // エラー管理用
   const [userId, setUserId] = useState(null); // 現在のユーザーID
+  const [coupons, setCoupons] = useState(0); // クーポン残数
 
   // Firestore からユーザーデータを取得
   const fetchUserData = async (uid) => {
@@ -20,6 +21,7 @@ export const PointCard = () => {
         const userData = userDoc.data();
         setUserName(userData.username);
         setPoints(userData.points || 0); // ポイント情報を取得
+        setCoupons(userData.coupons || 0); // クーポン残数を取得
       } else {
         setError('ユーザーデータが見つかりません');
       }
@@ -35,7 +37,7 @@ export const PointCard = () => {
 
     try {
       const userRef = doc(db, 'user', userId);
-      const newPoints = Math.min(points + 1); // 最大 10 ポイント
+      const newPoints = Math.min(points + 1, 10); // 最大 10 ポイント
       await updateDoc(userRef, { points: newPoints });
       setPoints(newPoints); // ローカル状態も更新
     } catch (err) {
@@ -136,6 +138,7 @@ export const PointCard = () => {
           >
             <p>{userName ? `こんにちは、${userName}さん！` : 'ユーザー名を読み込み中...'}</p>
             {error && <p className="error">{error}</p>}
+            <p>クーポン残数: {coupons !== null ? coupons : '読み込み中...'}</p>
           </div>
         </div>
       </div>
