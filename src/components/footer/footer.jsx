@@ -21,6 +21,13 @@ export const Footer = () => {
                     </div>
                 </Link>
             </div>
+            <div className="Post-bar">
+                <Link to='/CreatPost'>
+                    <div className="Post-button">
+                        <img src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_coupon_3.png" alt="AAA" />
+                    </div>
+                </Link>
+            </div>
         </div>
     )
 }
