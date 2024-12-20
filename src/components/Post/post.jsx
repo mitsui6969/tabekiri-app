@@ -48,6 +48,7 @@ const Post = ({ postId }) => {
 
     return (
         <div className="post">
+            <div className='post-container'>
             <div className='upper-container'>
                 {/* アイコン */}
                 {/* <div className="post__icon">
@@ -62,7 +63,13 @@ const Post = ({ postId }) => {
 
                 {/* 投稿日時 */}
                 <div className="post__date">
-                    <small>{new Date(postData.date.seconds * 1000).toLocaleString()}</small>
+                    <small>{new Date(postData.date.seconds * 1000).toLocaleString('ja-JP', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                    })}</small>
                 </div>
             </div>
 
@@ -81,6 +88,7 @@ const Post = ({ postId }) => {
                     <img src={postData.image} alt="Post" />
                 </div>
             )}
+            </div>
         </div>
     );
 };
