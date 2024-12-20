@@ -46,7 +46,7 @@ export function Home() {
 
   return (
     <div>
-      <button id='create-post-btn' onClick={() => handleShowModal(true)}>write</button>
+      <button id='create-post-btn' onClick={() => handleShowModal(true)}>投稿</button>
 
       <div className='home-page'>
         {/* ポイントカードの表示 */}
