@@ -1,12 +1,15 @@
 .footer {
-    width: 100%;
+    position: fixed;       /* 画面に固定 */
+    bottom: 0;             /* 画面の下端に配置 */
+    left: 0;               /* 左端に固定 */
+    width: 100%;           /* 横幅を全画面に広げる */
     display: flex;
     background-color: coral;
     padding: 10px 0;
     justify-content: center;
     box-sizing: border-box;
-    bottom: 0;
-    position: absolute;
+    z-index: 1000;         /* 他の要素より前面に表示 */
+
 }
 
 footer {
