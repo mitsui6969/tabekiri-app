@@ -11,12 +11,12 @@
 /* コンテナ */
 .header-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: space-between; /* ロゴとメニューを左右に配置 */
+    align-items: center; /* 縦方向を中央揃え */
+    width: 100%;
     padding: 0 20px;
     height: 60px;
+    box-sizing: border-box; /* padding を含めて幅を計算 */
 }
 
 /* ロゴ */
@@ -117,8 +117,8 @@ li:last-child {
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row; /* デフォルトの横並びを維持 */
+        justify-content: space-between;
     }
 
     .menu {
