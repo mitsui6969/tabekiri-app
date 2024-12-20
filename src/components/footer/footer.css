@@ -19,17 +19,6 @@ footer {
     max-width: 500px;
 }
 
-.background-bar {
-    width: 100%;
-    max-width: 390px;
-    height: 80px;             /* 背景の帯の高さ */
-    background-color: #FFA500; /* オレンジ色 */
-    position: absolute;           /* 画面の下に固定 */
-    bottom: 0;
-    display: flex;
-    justify-content: center;   /* 横方向の中央揃え */
-}
-
 /* 丸いQRコードエリア */
 .circle-button {
     width: 100px;               /* 円の直径 */
@@ -39,10 +28,10 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;         /* 絶対配置で調整 */
-    top: -30px;                 /* バーの上に配置 */
-    left: 65px;                /* 右端に配置 */
-    z-index: 10;                /* バーより前面に表示 */
+    position: fixed;         /* 絶対配置で調整 */
+    bottom: 1%;
+    left: 190px;                /* 右端に配置 */
+    z-index: 100;                /* バーより前面に表示 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影をつける */
     cursor: pointer;
     transition: background-color 0.3s; /* カラートランジション */
@@ -64,13 +53,13 @@ footer {
     max-width: 500px;
     height: 80px;             /* 背景の帯の高さ */
     background-color: #FFA500; /* オレンジ色 */
-    position: absolute;           /* 画面の下に固定 */
+    position: fixed;           /* 画面の下に固定 */
     bottom: 0;
     display: flex;
     justify-content: center;   /* 横方向の中央揃え */
 }
 
-/* 丸いQRコードエリア */
+/* 丸いクーポンエリア */
 .coupon-button {
     width: 100px;               /* 円の直径 */
     height: 100px;              /* 円の直径 */
@@ -79,9 +68,9 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;         /* 右端に配置するためにpositionをabsoluteに変更 */
-    top: -30px;                 /* 背景の帯に半分被せる */
-    right: 65px;                /* 右端からの距離 */
+    position: fixed;         /* 右端に配置するためにpositionをabsoluteに変更 */
+    bottom: 1%;
+    right: 175px;                /* 右端からの距離 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: under-color 0.3s;
