@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './createPost.css'
-import { TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { app } from "../../firebase/firebase";
 import { getAuth } from "firebase/auth";
@@ -45,8 +45,8 @@ const CreatePost = ({handleShowModal}) => {
         <div id="overlay">
             <div id="modalContent">
                 <div className="modalTop">
-                    <button onClick={handleCloseModal}>キャンセル</button>
-                    <button onClick={pushPost}>投稿</button>
+                    <Button className="cancel-btn" onClick={handleCloseModal}>キャンセル</Button>
+                    <Button className="post-btn" onClick={pushPost} disabled={!textPost}>投稿</Button>
                 </div>
                 <div className="modalCenter">
                     {/* ここに書く */}
@@ -54,7 +54,7 @@ const CreatePost = ({handleShowModal}) => {
                         sx={{ "& .MuiInputBase-input": { height: 50 }, width: 500 }}
                         label="最近どう？"
                         multiline
-                        rows={10} // 高さを行で設定
+                        rows={10}
                         variant="standard"
                         onChange={onChangeInput} 
                     /> 
