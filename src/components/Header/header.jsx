@@ -24,7 +24,7 @@ export const Header = () => {
                                 <Link to="/map" className="menu-link">Map</Link>
                             </li>
                             <li>
-                                <Link to="/inquiry" className="menu-link">お問い合わせ</Link>
+                                <Link to="/inquiry" className="menu-link">問い合わせ</Link>
                             </li>
                             <li>
                                 <Link to="/QRcode" className="menu-link">QRコード</Link>
