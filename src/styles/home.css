@@ -1,33 +1,40 @@
 .home-page {
     height: 100%;
     width: 100%;
-
     overflow: scroll;
 }
 
 .timeline {
     width: 85%;
-
     margin: 0 auto;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     border: solid coral;
 }
 
 /* ボタン */
 #create-post-btn {
-    position: absolute;
-    right: 7%;
-    bottom: 10%;
-
+    position: fixed; /* fixedを使用して画面全体に対する位置を指定 */
+    bottom: 10%; /* 画面下部に配置 */
+    left: 50%; /* 横方向の中央に配置 */
+    transform: translateX(-50%); /* 中央揃えにするために横方向を補正 */
+    
     height: 70px;
     width: 70px;
-    border-radius: 40px;
+    border-radius: 50%; /* 完全な円形にする */
     border: none;
 
     background-color: coral;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加して目立たせる */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* ホバー時のアニメーション */
+}
+
+/* ボタンにホバー時のスタイル */
+#create-post-btn:hover {
+    background-color: #f08080; /* 少し明るい色に変更 */
+    transform: translateX(-50%) scale(1.1); /* 少し大きくする */
 }

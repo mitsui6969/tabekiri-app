@@ -97,31 +97,3 @@ footer {
     width: 60px;
     height: 60px;
 }
-
-.Post-button {
-    width: 100px;               /* 円の直径 */
-    height: 100px;              /* 円の直径 */
-    background-color: #fff;     /* 白背景 */
-    border-radius: 50%;         /* 丸くする */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;         /* 右端に配置するためにpositionをabsoluteに変更 */
-    top: -30px;                 /* 背景の帯に半分被せる */
-    right: 65px;                /* 右端からの距離 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: under-color 0.3s;
-}
-
-
-/* ボタンにホバー時のスタイル */
-.Post-button:hover {
-    background-color: #f0f0f0; /* ホバー時の背景色 */
-}
-
-/* QRコードのイメージ */
-.Post-button img {
-    width: 60px;
-    height: 60px;
-}
