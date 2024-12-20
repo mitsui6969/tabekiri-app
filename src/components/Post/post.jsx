@@ -4,7 +4,6 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Firebase Fire
 // import { getAuth } from 'firebase/auth'; // Firebase認証用
 import { app } from '../../firebase/firebase'; // Firebaseアプリの設定ファイルをインポート
 import './post.css'; // CSSファイルでスタイルを適用
-import { Card } from '@mui/material';
 
 const Post = ({ postId }) => {
     const [postData, setPostData] = useState(null);
@@ -49,16 +48,29 @@ const Post = ({ postId }) => {
 
     return (
         <div className="post">
-            <Card>
-            {/* アイコン */}
-            {/* <div className="post__icon">
-                
-                <img src="/default-icon.png" alt="User Icon" />
-            </div> */}
+            <div className='post-container'>
+            <div className='upper-container'>
+                {/* アイコン */}
+                {/* <div className="post__icon">
+                    
+                    <img src="/default-icon.png" alt="User Icon" />
+                </div> */}
 
-            {/* ユーザーネーム */}
-            <div className="post__user">
-                <strong>{userData.username}</strong>
+                {/* ユーザーネーム */}
+                <div className="post__user">
+                    <strong>{userData.username}</strong>
+                </div>
+
+                {/* 投稿日時 */}
+                <div className="post__date">
+                    <small>{new Date(postData.date.seconds * 1000).toLocaleString('ja-JP', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                    })}</small>
+                </div>
             </div>
 
             {/* 投稿内容 */}
@@ -76,12 +88,7 @@ const Post = ({ postId }) => {
                     <img src={postData.image} alt="Post" />
                 </div>
             )}
-
-            {/* 投稿日時 */}
-            <div className="post__date">
-                <small>{new Date(postData.date.seconds * 1000).toLocaleString()}</small>
             </div>
-            </Card>
         </div>
     );
 };

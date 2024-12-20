@@ -56,7 +56,6 @@ export function Home() {
 
         {/* タイムライン */}
         <div className="timeline">
-          <h4>TL</h4>
           {posts.length > 0 ? (
             posts.map((post) => (
               <Post key={post.id} postId={post.id} /> // Postコンポーネントを利用
