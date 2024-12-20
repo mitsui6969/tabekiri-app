@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import './createPost.css'
 import { TextField } from "@mui/material";
 import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { app } from "../../firebase/firebase";
+import { getAuth } from "firebase/auth";
 // import firebase from '../../firebase/firebase'
 
 const CreatePost = ({handleShowModal}) => {
     const db = getFirestore(app);
-    const [textPost, setTextPost] = ('');
+    const auth = getAuth(app);
+    const [textPost, setTextPost] = useState('');
     // const [images, setImages] = (null);
     // const [shopInfo, setShopInfo] = (null);
 
@@ -20,6 +22,7 @@ const CreatePost = ({handleShowModal}) => {
     };
 
     const pushPost = async () => {
+        const user = auth.currentUser;
         try {
             // Firestoreにデータを保存
             await addDoc(collection(db, "post"), {
@@ -28,7 +31,7 @@ const CreatePost = ({handleShowModal}) => {
                 date: serverTimestamp(), // サーバーの現在時刻
                 // image: images, // 仮の画像情報
                 // shop: shopInfo, // 仮のお店情報
-                uid: "user-id-placeholder", // ユーザーID（本来は認証から取得する）
+                uid: user.uid, // ユーザーID
             });
             handleCloseModal(); // モーダルを閉じる
         } catch (error) {
