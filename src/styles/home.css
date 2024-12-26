@@ -4,6 +4,11 @@
     overflow: scroll;
 }
 
+.pointCard {
+    max-width: 100%;
+    margin: 15px auto;
+}
+
 .timeline {
     width: 85%;
     margin: 0 auto;
@@ -12,29 +17,4 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-/* ボタン */
-#create-post-btn {
-    position: fixed; /* fixedを使用して画面全体に対する位置を指定 */
-    bottom: 1.15%; /* 画面下部に配置 */
-    left: 51%; /* 横方向の中央に配置 */
-    transform: translateX(-50%); /* 中央揃えにするために横方向を補正 */
-    
-    height: 100px;
-    width: 100px;
-    border-radius: 50%; /* 完全な円形にする */
-    border: none;
-
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加して目立たせる */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; /* ホバー時のアニメーション */
-
-    z-index: 100;
-}
-
-/* ボタンにホバー時のスタイル */
-#create-post-btn:hover {
-    background-color: #f0f0f0; /* 少し明るい色に変更 */
 }

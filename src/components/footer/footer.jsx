@@ -3,12 +3,14 @@ import './footer.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { getFirestore, doc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import CreatePost from '../CreatePost/createPost';
 
 export const Footer = () => {
     const [showModal, setShowModal] = useState(false); // クーポン使用確認モーダル
     const [showConfirmationModal, setShowConfirmationModal] = useState(false); // クーポン使用後モーダル
     const [showNoCouponsModal, setShowNoCouponsModal] = useState(false); // クーポンがないモーダル
     const [coupons, setCoupons] = useState(null); // クーポンの数
+    const [showPostModal, setShowPostModal] = useState(false);
     const navigate = useNavigate();
     const db = getFirestore(); // Firestore インスタンス
     const auth = getAuth(); // 現在のユーザー情報
@@ -66,27 +68,42 @@ export const Footer = () => {
         }
     };
 
+    // モーダルウィンドウの表示非表示
+    const handleShowModal = (bool) => {
+        setShowPostModal(bool);
+    }
+
     return (
         <div>
-            <div className="background-bar">
-                <Link to='/QRcode'>
-                    <div className="circle-button">
+            <div className="under-bar">
+                <div className='fot-btns'>
+                    <div className="background-bar">
+                        <Link to='/QRcode'>
+                            <div className="circle-button">
+                                <img
+                                    src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_qrcode_1.png"
+                                    alt="QR Code"
+                                />
+                            </div>
+                        </Link>
+                    </div>
+
+                    <button
+                        id='create-post-btn'
+                        onClick={() => handleShowModal(true)}
+                    >
+                        投稿
+                    </button>
+
+                    <div
+                        className="coupon-button"
+                        onClick={() => setShowModal(true)} // クーポン確認モーダルを開く
+                    >
                         <img
-                            src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_qrcode_1.png"
-                            alt="QR Code"
+                            src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_coupon_3.png"
+                            alt="AAA"
                         />
                     </div>
-                </Link>
-            </div>
-            <div className="under-bar">
-                <div
-                    className="coupon-button"
-                    onClick={() => setShowModal(true)} // クーポン確認モーダルを開く
-                >
-                    <img
-                        src="https://kotonohaworks.com/free-icons/wp-content/uploads/kkrn_icon_coupon_3.png"
-                        alt="AAA"
-                    />
                 </div>
             </div>
 
@@ -154,6 +171,9 @@ export const Footer = () => {
                     </div>
                 </div>
             )}
+
+            {/* 投稿作成モーダル */}
+            {showPostModal && <CreatePost handleShowModal={handleShowModal}/>}
         </div>
     );
 };

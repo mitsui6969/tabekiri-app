@@ -19,6 +19,14 @@ footer {
     max-width: 500px;
 }
 
+.fot-btns {
+    min-width: 80%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 10px;
+}
+
 /* 丸いQRコードエリア */
 .circle-button {
     width: 100px;               /* 円の直径 */
@@ -28,9 +36,6 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;         /* 絶対配置で調整 */
-    bottom: 1%;
-    left: 190px;                /* 右端に配置 */
     z-index: 100;                /* バーより前面に表示 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影をつける */
     cursor: pointer;
@@ -68,9 +73,6 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;         /* 右端に配置するためにpositionをabsoluteに変更 */
-    bottom: 1%;
-    right: 175px;                /* 右端からの距離 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: under-color 0.3s;
@@ -86,6 +88,26 @@ footer {
 .coupon-button img {
     width: 60px;
     height: 60px;
+}
+
+/* 投稿ボタン */
+#create-post-btn {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%; /* 完全な円形にする */
+    border: none;
+
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影を追加して目立たせる */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* ホバー時のアニメーション */
+
+    z-index: 100;
+}
+
+/* ボタンにホバー時のスタイル */
+#create-post-btn:hover {
+    background-color: #f0f0f0; /* 少し明るい色に変更 */
 }
 
 /* モーダルの背景 */
