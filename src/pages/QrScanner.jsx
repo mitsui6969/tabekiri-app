@@ -3,6 +3,7 @@ import { QrReader } from 'react-qr-reader';
 import { useNavigate } from 'react-router-dom';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase/firebase';
+import Header from '../components/Header/header';
 
 export const QrScanner = () => {
   const [data, setData] = useState('No result'); // QRコードの結果を格納するためのステート
@@ -63,6 +64,7 @@ export const QrScanner = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
+      <Header/>
       <h2>QRコードをスキャンしてください</h2>
 
       <div className="qrReader">

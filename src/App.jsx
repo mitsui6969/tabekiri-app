@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from './firebase/firebase'; // Firebase設定
@@ -17,6 +17,15 @@ import { PointCard } from './components/PointCard/pointCard';
 function App() {
   const [stampCount, setStampCount] = useState(0); // ローカル状態
   const [user, setUser] = useState(null); // 現在のユーザー情報
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user && window.location.pathname !== "/LoginOrSignup" && window.location.pathname !== "/login" && window.location.pathname !== "/Signup") {
+      navigate("/LoginOrSignup"); // 初回のみリダイレクト
+      console.log("user:",user);
+    }
+  }, [user, navigate]);
 
   // ユーザーのポイントデータをFirestoreから取得
   const fetchPoints = async (uid) => {
@@ -65,8 +74,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <Header />
+    <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginOrSignup" element={<LoginOrSignup />} />
@@ -77,7 +85,7 @@ function App() {
         <Route path="/Inquiry" element={<Inquiry />} />
         <Route path="/Post" element={<CreatePost />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
