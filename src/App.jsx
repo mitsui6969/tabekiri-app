@@ -63,8 +63,11 @@ function App() {
       } else {
         setUser(null);
         setStampCount(0); // ログアウト時はポイントをリセット
-        if (!user && window.location.pathname !== "/LoginOrSignup" && window.location.pathname !== "/login" && window.location.pathname !== "/Signup") {
-          navigate("/LoginOrSignup"); // 初回のみリダイレクト
+
+        if (user == null) {
+          if (!user && window.location.pathname !== "/LoginOrSignup" && window.location.pathname !== "/login" && window.location.pathname !== "/Signup") {
+            navigate("/LoginOrSignup"); // 初回のみリダイレクト
+          }
         }
       }
     });
