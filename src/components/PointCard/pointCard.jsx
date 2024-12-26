@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, updateDoc, onSnapshot } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, onSnapshot, QueryEndAtConstraint } from 'firebase/firestore';
 import { auth, db } from "../../firebase/firebase";
 import './pointCard.css';
 
