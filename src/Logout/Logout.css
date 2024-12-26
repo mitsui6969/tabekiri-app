@@ -1,0 +1,81 @@
+/* Logout.css */
+
+/* ページ全体を中央に配置 */
+.logout-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* ビューポート全体の高さ */
+    background-color: #fff; /* 背景色を白に戻す */
+    margin: 0;
+}
+
+/* ログアウトコンテナ */
+.logout-container {
+    text-align: center;
+    padding: 40px; /* パディングを増やしてゆったり表示 */
+    max-width: 500px; /* コンテナの幅を広げる */
+    border: 2px solid #ddd; /* 境界線を太くして目立たせる */
+    border-radius: 12px; /* コーナーを丸くする */
+    background-color: #fff; /* 背景を白に設定 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* 影を強調 */
+}
+
+/* ヘッダー */
+.logout-header {
+    font-size: 32px; /* ヘッダーを大きく表示 */
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* コンテンツ */
+.logout-content p {
+    font-size: 18px; /* テキストを大きく表示 */
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* ボタン */
+.logout-button {
+    padding: 15px 30px; /* ボタンサイズを大きく */
+    font-size: 18px; /* ボタンテキストを大きく */
+    color: #fff;
+    background-color: #ff6347; /* 鮮やかなコーラル色 */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.logout-button:hover {
+    background-color: #e5533d;
+    transform: scale(1.05); /* ホバー時に少し拡大 */
+}
+
+/* ログアウト後のリンク */
+.logout-content a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.logout-content a:hover {
+    text-decoration: underline;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .logout-container {
+        max-width: 90%; /* スマホ画面では幅を広げる */
+        padding: 30px; /* パディングを調整 */
+    }
+
+    .logout-header {
+        font-size: 28px; /* ヘッダーサイズを少し縮小 */
+    }
+
+    .logout-button {
+        font-size: 16px; /* ボタンテキストを調整 */
+    }
+}
