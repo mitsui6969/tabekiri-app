@@ -13,6 +13,7 @@ import { Header } from './components/Header/header';
 import { QrScanner } from './pages/QrScanner';
 import { Inquiry } from './pages/Inquiry';
 import { PointCard } from './components/PointCard/pointCard';
+import { Logout } from './Logout/Logout';
 import { Mm1 } from './pages/Mm1'
 
 function App() {
@@ -82,6 +83,7 @@ function App() {
         <Route path="/QRcode" element={<QrScanner addStamp={addStamp} />} />
         <Route path="/PointCard" element={<PointCard stampCount={stampCount} />} />
         <Route path="/Inquiry" element={<Inquiry />} />
+        <Route path="/Logout" element={<Logout />} />
         <Route path="/Post" element={<CreatePost />} />
         <Route path="/map" element={<Mm1 />} />
       </Routes>
