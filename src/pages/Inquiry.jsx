@@ -1,8 +1,11 @@
 import React from "react";
 import '../styles/inquiry.css'
+import Header from "../components/Header/header";
 
 export function Inquiry() {
   return (
+    <>
+    <Header/>
     <div className="container">
       <div className="info-section">
         <h2>ゼロカーボンシティ推進課</h2>
@@ -20,6 +23,7 @@ export function Inquiry() {
       <p className="hours">（受付時間9:00～17:45）</p>
     </div>
     </div>
+    </>
   );
 }
 

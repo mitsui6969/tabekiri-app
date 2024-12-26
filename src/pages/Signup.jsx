@@ -5,6 +5,7 @@ import { auth, db } from "../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import "../styles/login.css";
 import "../styles/Signup.css";
+import Header from "../components/Header/header";
 
 export const Signup = () => {
   const [username, setUsername] = useState("");
@@ -39,6 +40,7 @@ export const Signup = () => {
   };
 
   return (
+    <>
     <div className="signup-container">
       <div className="form-wrapper">
         <h2>新規登録</h2>
@@ -75,6 +77,7 @@ export const Signup = () => {
         {error && <div className="error-message">{error}</div>}
       </div>
     </div>
+    </>
   );
 };
 

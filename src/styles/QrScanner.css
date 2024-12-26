@@ -5,6 +5,7 @@
     align-items: center;    /* 水平方向の中央 */
     height: 100%;           /* 画面全体の高さ */
     text-align: center;
+    padding-top: 60px;
 }
 
 .title {

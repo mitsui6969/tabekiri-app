@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from './firebase/firebase'; // Firebase設定
@@ -18,6 +18,8 @@ import { Mm1 } from './pages/Mm1'
 function App() {
   const [stampCount, setStampCount] = useState(0); // ローカル状態
   const [user, setUser] = useState(null); // 現在のユーザー情報
+
+  const navigate = useNavigate();
 
   // ユーザーのポイントデータをFirestoreから取得
   const fetchPoints = async (uid) => {
@@ -60,15 +62,18 @@ function App() {
       } else {
         setUser(null);
         setStampCount(0); // ログアウト時はポイントをリセット
+        if (!user && window.location.pathname !== "/LoginOrSignup" && window.location.pathname !== "/login" && window.location.pathname !== "/Signup") {
+          navigate("/LoginOrSignup"); // 初回のみリダイレクト
+        }
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user, navigate]);
+
 
   return (
-    <Router>
-      <Header />
+    <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginOrSignup" element={<LoginOrSignup />} />
@@ -80,7 +85,7 @@ function App() {
         <Route path="/Post" element={<CreatePost />} />
         <Route path="/map" element={<Mm1 />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
