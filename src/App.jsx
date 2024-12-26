@@ -20,13 +20,6 @@ function App() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!user && window.location.pathname !== "/LoginOrSignup" && window.location.pathname !== "/login" && window.location.pathname !== "/Signup") {
-      navigate("/LoginOrSignup"); // 初回のみリダイレクト
-      console.log("user:",user);
-    }
-  }, [user, navigate]);
-
   // ユーザーのポイントデータをFirestoreから取得
   const fetchPoints = async (uid) => {
     try {
@@ -67,11 +60,15 @@ function App() {
       } else {
         setUser(null);
         setStampCount(0); // ログアウト時はポイントをリセット
+        if (!user && window.location.pathname !== "/LoginOrSignup" && window.location.pathname !== "/login" && window.location.pathname !== "/Signup") {
+          navigate("/LoginOrSignup"); // 初回のみリダイレクト
+        }
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user, navigate]);
+
 
   return (
     <>
