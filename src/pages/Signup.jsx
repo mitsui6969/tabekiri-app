@@ -13,6 +13,10 @@ export const Signup = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  const goToLogin = () => {
+    navigate("/login");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -71,7 +75,7 @@ export const Signup = () => {
             新規登録
           </button>
         </form>
-        <p className="navi-signup">ログインは<a href="/login">こちら</a></p>
+        <p className="navi-signup">ログインは<a onClick={goToLogin}>こちら</a></p>
         {error && <div className="error-message">{error}</div>}
       </div>
     </div>
