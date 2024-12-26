@@ -13,6 +13,7 @@ import { Header } from './components/Header/header';
 import { QrScanner } from './pages/QrScanner';
 import { Inquiry } from './pages/Inquiry';
 import { PointCard } from './components/PointCard/pointCard';
+import { Mm1 } from './pages/Mm1'
 
 function App() {
   const [stampCount, setStampCount] = useState(0); // ローカル状態
@@ -37,6 +38,7 @@ function App() {
   // QRコードスキャンでポイントを追加
   const addStamp = async () => {
     if (!user) return;
+
 
     try {
       const userRef = doc(db, 'users', user.uid);
@@ -76,6 +78,7 @@ function App() {
         <Route path="/PointCard" element={<PointCard stampCount={stampCount} />} />
         <Route path="/Inquiry" element={<Inquiry />} />
         <Route path="/Post" element={<CreatePost />} />
+        <Route path="/map" element={<Mm1 />} />
       </Routes>
     </Router>
   );
