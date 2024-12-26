@@ -78,7 +78,7 @@ function App() {
         <Route path="/PointCard" element={<PointCard stampCount={stampCount} />} />
         <Route path="/Inquiry" element={<Inquiry />} />
         <Route path="/Post" element={<CreatePost />} />
-        <Route path="/mm1" element={<Mm1 />} />
+        <Route path="/map" element={<Mm1 />} />
       </Routes>
     </Router>
   );
