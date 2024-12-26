@@ -6,7 +6,7 @@ import { app } from "../../firebase/firebase";
 import { getAuth } from "firebase/auth";
 // import firebase from '../../firebase/firebase'
 
-const CreatePost = ({handleShowModal}) => {
+export const CreatePost = ({handleShowModal}) => {
     const db = getFirestore(app);
     const auth = getAuth(app);
     const [textPost, setTextPost] = useState('');

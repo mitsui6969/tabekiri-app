@@ -2,8 +2,26 @@
     height: auto;
     width: 100%;
 
-    background-color: aquamarine;
+    background-color: white;
 
     margin: 5px;
-    padding: 10px 0;
+    padding: 20px 0;
+
+    border-radius: 10px;
+    border: solid 1px #edf1f6;
+    box-shadow: 0 1px 7px #edf1f6;
+}
+
+.post-container {
+    margin: 0 10%;
+    text-align: left;
+}
+
+.upper-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post__date {
+    color: gray;
 }

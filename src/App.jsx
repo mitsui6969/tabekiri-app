@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from './firebase/firebase'; // Firebase設定
-
+import { CreatePost } from './components/CreatePost/createPost';
 import './App.css';
 import { Home } from "./pages/Home";
 import { LoginOrSignup } from './pages/LoginOrSignup';
@@ -14,6 +14,7 @@ import { QrScanner } from './pages/QrScanner';
 import { Inquiry } from './pages/Inquiry';
 import { PointCard } from './components/PointCard/pointCard';
 import { Logout } from './Logout/Logout';
+import { Mm1 } from './pages/Mm1'
 
 function App() {
   const [stampCount, setStampCount] = useState(0); // ローカル状態
@@ -38,6 +39,7 @@ function App() {
   // QRコードスキャンでポイントを追加
   const addStamp = async () => {
     if (!user) return;
+
 
     try {
       const userRef = doc(db, 'users', user.uid);
@@ -77,6 +79,8 @@ function App() {
         <Route path="/PointCard" element={<PointCard stampCount={stampCount} />} />
         <Route path="/Inquiry" element={<Inquiry />} />
         <Route path="/Logout" element={<Logout />} />
+        <Route path="/Post" element={<CreatePost />} />
+        <Route path="/map" element={<Mm1 />} />
       </Routes>
     </Router>
   );

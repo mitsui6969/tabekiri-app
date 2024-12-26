@@ -10,16 +10,10 @@ import CreatePost from '../components/CreatePost/createPost';
 export function Home() {
   const [posts, setPosts] = useState([]); // 投稿データの状態管理
   const db = getFirestore(app);
-  const [showModal, setShowModal] = useState(false);
 
   const handleNavigate = () => {
     window.location.href = "https://www.infra-linux.com/linux-ex-menu/#%E6%BC%94%E7%BF%92%EF%BC%90%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%90";
   };
-
-  // モーダルウィンドウの表示非表示
-  const handleShowModal = (bool) => {
-    setShowModal(bool);
-  }
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -46,8 +40,6 @@ export function Home() {
 
   return (
     <div>
-      <button id='create-post-btn' onClick={() => handleShowModal(true)}>write</button>
-
       <div className='home-page'>
         {/* ポイントカードの表示 */}
         <div className="pointCard">
@@ -56,7 +48,6 @@ export function Home() {
 
         {/* タイムライン */}
         <div className="timeline">
-          <h4>TL</h4>
           {posts.length > 0 ? (
             posts.map((post) => (
               <Post key={post.id} postId={post.id} /> // Postコンポーネントを利用
@@ -66,8 +57,6 @@ export function Home() {
           )}
         </div>
       </div>
-
-      {showModal && <CreatePost handleShowModal={handleShowModal}/>}
 
       <Footer/>
     </div>
