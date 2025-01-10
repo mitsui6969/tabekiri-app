@@ -43,7 +43,7 @@ const Post = ({ postId }) => {
     }, [db, postId]);
 
     if (!postData || !userData) {
-        return <div>Loading...</div>;
+        return <div></div>;
     }
 
     return (
