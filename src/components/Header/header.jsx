@@ -20,11 +20,7 @@ export const Header = () => {
                             <li>
                                 <Link to="/" className="menu-link">Home</Link>
                             </li>
-                            {/* <li>
-                                <Link to="/login" className="menu-link">Login</Link>
-                            </li> */}
                             <li>
-
                                 <Link to="/map" className="menu-link">Map</Link>
                             </li>
                             <li>
