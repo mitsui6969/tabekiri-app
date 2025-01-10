@@ -12,31 +12,26 @@ export function Home() {
   const [posts, setPosts] = useState([]); // 投稿データの状態管理
   const db = getFirestore(app);
 
-  const handleNavigate = () => {
-    window.location.href = "https://www.infra-linux.com/linux-ex-menu/#%E6%BC%94%E7%BF%92%EF%BC%90%EF%BC%91%EF%BC%8D%EF%BC%92%EF%BC%90";
+  const fetchPosts = async () => {
+    try {
+      // Firestoreから投稿データを取得
+      const q = query(collection(db, 'post'), orderBy('date', 'desc')); // 投稿を日付順で取得
+      const querySnapshot = await getDocs(q);
+
+      const fetchedPosts = [];
+      querySnapshot.forEach((doc) => {
+        fetchedPosts.push({ id: doc.id, ...doc.data() }); // IDとデータをマージ
+      });
+
+      setPosts(fetchedPosts);
+    } catch (error) {
+      console.error('投稿データの取得中にエラーが発生しました:', error);
+    }
   };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        // Firestoreから投稿データを取得
-        const q = query(collection(db, 'post'), orderBy('date', 'desc')); // 投稿を日付順で取得
-        const querySnapshot = await getDocs(q);
-
-        const fetchedPosts = [];
-        querySnapshot.forEach((doc) => {
-          fetchedPosts.push({ id: doc.id, ...doc.data() }); // IDとデータをマージ
-        });
-
-        setPosts(fetchedPosts);
-      } catch (error) {
-        console.error('投稿データの取得中にエラーが発生しました:', error);
-      }
-    };
-
     fetchPosts();
-  }, [db]);
-
+  }, []);
 
 
   return (
@@ -60,7 +55,7 @@ export function Home() {
         </div>
       </div>
 
-      <Footer/>
+      <Footer refreshPosts={fetchPosts}/>
     </div>
   );
 }

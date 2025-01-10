@@ -5,7 +5,7 @@ import { getFirestore, doc, getDoc, updateDoc, increment } from 'firebase/firest
 import { getAuth } from 'firebase/auth';
 import CreatePost from '../CreatePost/createPost';
 
-export const Footer = () => {
+export const Footer = ({ refreshPosts }) => {
     const [showModal, setShowModal] = useState(false); // クーポン使用確認モーダル
     const [showConfirmationModal, setShowConfirmationModal] = useState(false); // クーポン使用後モーダル
     const [showNoCouponsModal, setShowNoCouponsModal] = useState(false); // クーポンがないモーダル
@@ -173,7 +173,7 @@ export const Footer = () => {
             )}
 
             {/* 投稿作成モーダル */}
-            {showPostModal && <CreatePost handleShowModal={handleShowModal}/>}
+            {showPostModal && <CreatePost handleShowModal={handleShowModal} refreshPosts={refreshPosts}/>}
         </div>
     );
 };
