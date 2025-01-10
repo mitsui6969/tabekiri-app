@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import './header.css';
+import { colors } from "@mui/material";
 
 export const Header = () => {
     return (
@@ -19,21 +20,22 @@ export const Header = () => {
                             <li>
                                 <Link to="/" className="menu-link">Home</Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link to="/login" className="menu-link">Login</Link>
-                            </li>
+                            </li> */}
                             <li>
 
                                 <Link to="/map" className="menu-link">Map</Link>
                             </li>
                             <li>
+                                <Link to="/QRcode" className="menu-link">QRコード</Link>
+                            </li>
+                            <li>
                                 <Link to="/inquiry" className="menu-link">お問い合わせ</Link>
                             </li>
                             <li>
-                                <Link to="/QRcode" className="menu-link">QRコード</Link>
-
+                                <Link to="/Logout" className="menu-link" style={{ color: 'red' }}>ログアウト</Link>
                             </li>
-                                <Link to="/Logout" className="menu-link">ログアウト</Link>
                         </ul>
                     </nav>
                 </details>
