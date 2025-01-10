@@ -20,7 +20,7 @@ export const Footer = ({ refreshPosts }) => {
         const fetchCoupons = async () => {
             const user = auth.currentUser;
             if (!user) {
-                console.error('ユーザーがログインしていません');
+                console.log('ユーザーがログインしていません');
                 return;
             }
             try {
