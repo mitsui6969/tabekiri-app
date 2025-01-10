@@ -12,7 +12,7 @@ export const LoginOrSignup = () => {
 
   // 新規登録画面への遷移関数
   const goToSignup = () => {
-    navigate("/signup");
+    navigate("/Signup");
   };
 
   return (

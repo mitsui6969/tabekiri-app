@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from './firebase/firebase'; // Firebase設定
@@ -13,11 +13,14 @@ import { Header } from './components/Header/header';
 import { QrScanner } from './pages/QrScanner';
 import { Inquiry } from './pages/Inquiry';
 import { PointCard } from './components/PointCard/pointCard';
+import { Logout } from './Logout/Logout';
 import { Mm1 } from './pages/Mm1'
 
 function App() {
   const [stampCount, setStampCount] = useState(0); // ローカル状態
   const [user, setUser] = useState(null); // 現在のユーザー情報
+
+  const navigate = useNavigate();
 
   // ユーザーのポイントデータをFirestoreから取得
   const fetchPoints = async (uid) => {
@@ -60,15 +63,21 @@ function App() {
       } else {
         setUser(null);
         setStampCount(0); // ログアウト時はポイントをリセット
+
+        if (user == null) {
+          if (!user && window.location.pathname !== "/LoginOrSignup" && window.location.pathname !== "/login" && window.location.pathname !== "/Signup") {
+            navigate("/LoginOrSignup"); // 初回のみリダイレクト
+          }
+        }
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user, navigate]);
+
 
   return (
-    <Router>
-      <Header />
+    <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/LoginOrSignup" element={<LoginOrSignup />} />
@@ -77,10 +86,11 @@ function App() {
         <Route path="/QRcode" element={<QrScanner addStamp={addStamp} />} />
         <Route path="/PointCard" element={<PointCard stampCount={stampCount} />} />
         <Route path="/Inquiry" element={<Inquiry />} />
+        <Route path="/Logout" element={<Logout />} />
         <Route path="/Post" element={<CreatePost />} />
         <Route path="/map" element={<Mm1 />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 

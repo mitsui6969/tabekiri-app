@@ -5,6 +5,7 @@ import { auth, db } from "../firebase/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import "../styles/login.css";
 import "../styles/Signup.css";
+import Header from "../components/Header/header";
 
 export const Signup = () => {
   const [username, setUsername] = useState("");
@@ -12,6 +13,10 @@ export const Signup = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  const goToLogin = () => {
+    navigate("/login");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +44,7 @@ export const Signup = () => {
   };
 
   return (
+    <>
     <div className="signup-container">
       <div className="form-wrapper">
         <h2>新規登録</h2>
@@ -71,10 +77,11 @@ export const Signup = () => {
             新規登録
           </button>
         </form>
-        <p className="navi-signup">ログインは<a href="/login">こちら</a></p>
+        <p className="navi-signup">ログインは<a onClick={goToLogin}>こちら</a></p>
         {error && <div className="error-message">{error}</div>}
       </div>
     </div>
+    </>
   );
 };
 

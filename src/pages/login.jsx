@@ -10,6 +10,11 @@ export function Login() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
+    // 新規登録画面への遷移関数
+    const goToSignup = () => {
+        navigate("/Signup");
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
@@ -48,7 +53,7 @@ export function Login() {
                     ログイン
                 </button>
             </form>
-            <p className="navi-signup">新規登録は<a href="/Signup">こちら</a></p>
+            <p className="navi-signup">新規登録は<a onClick={goToSignup}>こちら</a></p>
             {error && <div className="error-message">{error}</div>}
             </div>
         </div>

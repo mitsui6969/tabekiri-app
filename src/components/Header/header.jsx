@@ -33,6 +33,7 @@ export const Header = () => {
                                 <Link to="/QRcode" className="menu-link">QRコード</Link>
 
                             </li>
+                                <Link to="/Logout" className="menu-link">ログアウト</Link>
                         </ul>
                     </nav>
                 </details>

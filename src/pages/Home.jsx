@@ -6,6 +6,7 @@ import {Footer} from '../components/footer/footer';
 import { PointCard } from '../components/PointCard/pointCard';
 import '../styles/home.css'
 import CreatePost from '../components/CreatePost/createPost';
+import Header from '../components/Header/header';
 
 export function Home() {
   const [posts, setPosts] = useState([]); // 投稿データの状態管理
@@ -40,6 +41,7 @@ export function Home() {
 
   return (
     <div>
+      <Header/>
       <div className='home-page'>
         {/* ポイントカードの表示 */}
         <div className="pointCard">
