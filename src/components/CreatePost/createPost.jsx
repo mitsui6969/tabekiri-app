@@ -6,7 +6,7 @@ import { app } from "../../firebase/firebase";
 import { getAuth } from "firebase/auth";
 // import firebase from '../../firebase/firebase'
 
-export const CreatePost = ({handleShowModal}) => {
+export const CreatePost = ({handleShowModal, refreshPosts}) => {
     const db = getFirestore(app);
     const auth = getAuth(app);
     const [textPost, setTextPost] = useState('');
@@ -33,6 +33,7 @@ export const CreatePost = ({handleShowModal}) => {
                 // shop: shopInfo, // 仮のお店情報
                 uid: user.uid, // ユーザーID
             });
+            refreshPosts();
             handleCloseModal(); // モーダルを閉じる
         } catch (error) {
             console.error("投稿保存中にエラーが発生しました:", error);
