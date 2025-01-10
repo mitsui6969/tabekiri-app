@@ -10,10 +10,12 @@ import Header from '../components/Header/header';
 
 export function Home() {
   const [posts, setPosts] = useState([]); // 投稿データの状態管理
+  const [isLoading, setIsLoading] = useState(true);
   const db = getFirestore(app);
 
   const fetchPosts = async () => {
     try {
+      setIsLoading(true);
       // Firestoreから投稿データを取得
       const q = query(collection(db, 'post'), orderBy('date', 'desc')); // 投稿を日付順で取得
       const querySnapshot = await getDocs(q);
@@ -26,6 +28,8 @@ export function Home() {
       setPosts(fetchedPosts);
     } catch (error) {
       console.error('投稿データの取得中にエラーが発生しました:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -45,7 +49,9 @@ export function Home() {
 
         {/* タイムライン */}
         <div className="timeline">
-          {posts.length > 0 ? (
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : posts.length > 0 ? (
             posts.map((post) => (
               <Post key={post.id} postId={post.id} /> // Postコンポーネントを利用
             ))
