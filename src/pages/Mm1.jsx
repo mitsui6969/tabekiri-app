@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import "./Mm1.css";
+import Header from '../components/Header/header';
 
 export const Mm1 = () => {
   const mapRef = useRef(null);
@@ -100,7 +101,8 @@ export const Mm1 = () => {
   }, [map]);
 
   return (
-    <div>
+    <div className='map-page'>
+      <Header/>
       <div className="controls">
         <span className="title">現在地確認</span>
         <button className="toggle-button" onClick={togglePositionMonitoring}>

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { signOut } from "firebase/auth"; // Firebaseのログアウト関数
 import { auth } from "../firebase/firebase"; // Firebase認証のインスタンス
 import './Logout.css';
+import Header from "../components/Header/header";
 
 export const Logout = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(true); // ログイン状態を管理（初期値をtrueに設定）
@@ -20,6 +21,7 @@ export const Logout = () => {
 
     return (
         <div className="logout-page">
+            <Header />
             <div className="logout-container">
                 <h1 className="logout-header">ログアウト</h1>
                 {isLoggedIn ? (

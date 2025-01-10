@@ -1,3 +1,10 @@
+.map-page {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  padding-top: 60px;
+}
+
 /* コントロール部分（上部バー） */
 .controls {
   background-color: #ffffff;
