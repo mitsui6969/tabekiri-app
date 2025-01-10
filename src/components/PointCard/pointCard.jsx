@@ -7,7 +7,7 @@ import './pointCard.css';
 export const PointCard = () => {
   const [points, setPoints] = useState(0); // 現在のポイント数
   const [coupons, setCoupons] = useState(0); // 現在のクーポン数
-  const [cardColor, setCardColor] = useState('#ff4d4d');
+  const [cardColor, setCardColor] = useState('#FFA500 ');
   const [isFlipped, setIsFlipped] = useState(false);
   const [userName, setUserName] = useState(); // ユーザー名
   const [error, setError] = useState(''); // エラー管理用
@@ -85,15 +85,7 @@ export const PointCard = () => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <div style={{ marginBottom: '10px' }}>
-        <label htmlFor="card-color">カードの色を選択:</label>
-        <input
-          id="card-color"
-          type="color"
-          value={cardColor}
-          onChange={(e) => setCardColor(e.target.value)}
-        />
-      </div>
+      
 
       <div
         className={`card ${isFlipped ? 'flipped' : ''}`}
